@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -14,6 +15,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $fillable = [
+        'tenant_id',
         'phone',
         'name',
         'last_name',
@@ -39,9 +41,19 @@ class User extends Authenticatable
         ];
     }
 
+    public function tenant(): BelongsTo
+    {
+        return $this->belongsTo(Tenant::class);
+    }
+
     public function student(): HasOne
     {
         return $this->hasOne(Student::class);
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->role === 'superadmin';
     }
 
     public function isAdmin(): bool

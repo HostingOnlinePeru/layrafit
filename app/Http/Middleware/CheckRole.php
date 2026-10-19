@@ -15,6 +15,10 @@ class CheckRole
         }
 
         if (! in_array($request->user()->role, $roles, true)) {
+            if ($request->user()->isSuperAdmin()) {
+                return redirect()->route('superadmin.dashboard');
+            }
+
             if ($request->user()->isAdmin()) {
                 return redirect()->route('admin.dashboard');
             }

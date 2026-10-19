@@ -34,13 +34,24 @@ Route::get('/registro', [AuthController::class, 'showRegister'])->name('register
 Route::post('/registro', [AuthController::class, 'register'])->name('register.perform');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Cambio Obligatorio de ContraseÃƒÂ±a (Primer login)
+use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashboardController;
+use App\Http\Controllers\SuperAdmin\TenantController as SuperAdminTenantController;
+
+// Cambio Obligatorio de Contraseña (Primer login)
 Route::middleware(['auth'])->group(function () {
     Route::get('/cambiar-password', [AuthController::class, 'showChangePassword'])->name('password.change');
     Route::post('/cambiar-password', [AuthController::class, 'changePassword'])->name('password.update');
 });
 
-// Rutas de Administrador
+// Rutas de Super Admin (FitClass SaaS)
+Route::middleware(['auth', MustChangePassword::class, CheckRole::class.':superadmin'])->prefix('superadmin')->name('superadmin.')->group(function () {
+    Route::get('/dashboard', SuperAdminDashboardController::class)->name('dashboard');
+    Route::resource('tenants', SuperAdminTenantController::class);
+    Route::post('tenants/{tenant}/toggle', [SuperAdminTenantController::class, 'toggleStatus'])->name('tenants.toggle');
+    Route::post('tenants/{tenant}/renew', [SuperAdminTenantController::class, 'renew'])->name('tenants.renew');
+});
+
+// Rutas de Administrador (Academia / Gimnasio)
 Route::middleware(['auth', MustChangePassword::class, CheckRole::class.':admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', AdminDashboardController::class)->name('dashboard');
 

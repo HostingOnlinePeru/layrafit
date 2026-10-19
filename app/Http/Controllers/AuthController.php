@@ -16,6 +16,10 @@ class AuthController extends Controller
     public function showLogin(): View|RedirectResponse
     {
         if (Auth::check()) {
+            if (Auth::user()->isSuperAdmin()) {
+                return redirect()->route('superadmin.dashboard');
+            }
+
             return Auth::user()->isAdmin()
                 ? redirect()->route('admin.dashboard')
                 : redirect()->route('student.dashboard');
@@ -47,6 +51,10 @@ class AuthController extends Controller
 
             if ($user->must_change_password) {
                 return redirect()->route('password.change');
+            }
+
+            if ($user->isSuperAdmin()) {
+                return redirect()->route('superadmin.dashboard');
             }
 
             return $user->isAdmin()

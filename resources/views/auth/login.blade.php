@@ -55,13 +55,17 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; font-size: 15px;">
-                    Ingresar a Layra Fit
+                    Ingresar al Sistema
                 </button>
             </form>
 
-            <div style="text-align: center; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-color); font-size: 14px; color: var(--text-muted);">
+            <div style="text-align: center; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border-color); font-size: 13px; color: var(--text-muted);">
                 ¿Eres alumna nueva? 
                 <a href="{{ route('register') }}" style="color: var(--primary); font-weight: 600;">Regístrate aquí</a>
+            </div>
+
+            <div style="text-align: center; margin-top: 14px; font-size: 11px; color: var(--text-muted); opacity: 0.8;">
+                <i class="fa-solid fa-cloud" style="color: #38bdf8;"></i> Desarrollado sobre <strong>FitClass SaaS</strong>
             </div>
         </div>
 
