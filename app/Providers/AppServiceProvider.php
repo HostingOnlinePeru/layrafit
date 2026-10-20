@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Tenant;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,12 +29,14 @@ class AppServiceProvider extends ServiceProvider
         }
 
         // Compartir información del Tenant activo en todas las vistas
-        \Illuminate\Support\Facades\View::composer('*', function ($view) {
+        View::composer('*', function ($view) {
             $user = auth()->user();
             if ($user && $user->tenant) {
                 $tenant = $user->tenant;
+            } elseif (session()->has('current_tenant_id')) {
+                $tenant = Tenant::find(session('current_tenant_id')) ?? Tenant::first();
             } else {
-                $tenant = \App\Models\Tenant::first();
+                $tenant = Tenant::first();
             }
 
             $view->with('currentTenant', $tenant);

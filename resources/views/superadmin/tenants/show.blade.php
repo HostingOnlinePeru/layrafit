@@ -48,6 +48,28 @@
         </div>
     </div>
 
+    <!-- Banner de Enlaces Oficiales de la Academia (Marca Blanca) -->
+    <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 14px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <div>
+            <div style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px;">
+                <i class="fa-solid fa-link"></i> Enlace Oficial de Acceso para esta Academia (Marca Blanca):
+            </div>
+            <div style="font-size: 14px; font-weight: 700; color: #fff; margin-top: 4px;">
+                <a href="{{ route('tenant.login', $tenant->slug) }}" target="_blank" style="color: #38bdf8; text-decoration: underline;">
+                    {{ url('/a/' . $tenant->slug) }}
+                </a>
+            </div>
+            <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">
+                Alumnos y profesores acceden con el logo y portada de esta academia. Registro directo: <code>{{ url('/a/' . $tenant->slug . '/registro') }}</code>
+            </div>
+        </div>
+        <div>
+            <a href="{{ route('tenant.login', $tenant->slug) }}" target="_blank" class="btn btn-primary btn-sm" style="font-weight: 800; background: linear-gradient(135deg, #06b6d4, #3b82f6); border: none;">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Portal de esta Academia
+            </a>
+        </div>
+    </div>
+
     <!-- Grid de Información y Estado de Membresía -->
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
         

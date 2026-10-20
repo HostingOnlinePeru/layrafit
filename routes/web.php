@@ -27,12 +27,19 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-// AutenticaciÃƒÂ³n pÃƒÂºblica
+// Autenticación pública
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.perform');
 Route::get('/registro', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/registro', [AuthController::class, 'register'])->name('register.perform');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Ingreso Maestro Super Admin FitClass
+Route::get('/superadmin/login', [AuthController::class, 'showSuperAdminLogin'])->name('superadmin.login');
+
+// Acceso personalizado por academia (Marca Blanca)
+Route::get('/a/{slug}', [AuthController::class, 'showTenantLogin'])->name('tenant.login');
+Route::get('/a/{slug}/registro', [AuthController::class, 'showTenantRegister'])->name('tenant.register');
 
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashboardController;

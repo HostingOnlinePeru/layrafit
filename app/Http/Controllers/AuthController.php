@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Location;
 use App\Models\Student;
+use App\Models\Tenant;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -13,6 +14,15 @@ use Illuminate\View\View;
 
 class AuthController extends Controller
 {
+    public function showSuperAdminLogin(): View|RedirectResponse
+    {
+        if (Auth::check() && Auth::user()->isSuperAdmin()) {
+            return redirect()->route('superadmin.dashboard');
+        }
+
+        return view('auth.superadmin-login');
+    }
+
     public function showLogin(): View|RedirectResponse
     {
         if (Auth::check()) {
@@ -28,17 +38,48 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    public function showTenantLogin(string $slug): View|RedirectResponse
+    {
+        $tenant = Tenant::where('slug', $slug)->firstOrFail();
+        session(['current_tenant_id' => $tenant->id]);
+
+        if (Auth::check()) {
+            if (Auth::user()->isSuperAdmin()) {
+                return redirect()->route('superadmin.dashboard');
+            }
+
+            return Auth::user()->isAdmin()
+                ? redirect()->route('admin.dashboard')
+                : redirect()->route('student.dashboard');
+        }
+
+        return view('auth.login', ['currentTenant' => $tenant]);
+    }
+
+    public function showTenantRegister(string $slug): View
+    {
+        $tenant = Tenant::where('slug', $slug)->firstOrFail();
+        session(['current_tenant_id' => $tenant->id]);
+
+        $locations = Location::where('is_active', true)->get();
+
+        return view('auth.register', ['currentTenant' => $tenant, 'locations' => $locations]);
+    }
+
     public function login(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
             'phone' => ['required', 'string'],
             'password' => ['required', 'string'],
         ], [
-            'phone.required' => 'Ingresa tu número de teléfono.',
+            'phone.required' => 'Ingresa tu número de teléfono o correo de acceso.',
             'password.required' => 'Ingresa tu contraseña.',
         ]);
 
-        $user = User::where('phone', $credentials['phone'])->first();
+        $loginField = $credentials['phone'];
+        $user = User::where('phone', $loginField)
+            ->orWhere('email', $loginField)
+            ->first();
 
         if (! $user || ! $user->is_active) {
             return back()->withErrors([
@@ -46,7 +87,7 @@ class AuthController extends Controller
             ])->onlyInput('phone');
         }
 
-        if (Auth::attempt(['phone' => $credentials['phone'], 'password' => $credentials['password']], $request->boolean('remember'))) {
+        if (Auth::attempt(['id' => $user->id, 'password' => $credentials['password']], $request->boolean('remember'))) {
             $request->session()->regenerate();
 
             if ($user->must_change_password) {
@@ -92,7 +133,10 @@ class AuthController extends Controller
             'location_id.required' => 'Selecciona tu sede de Bail Fitness.',
         ]);
 
+        $tenantId = session('current_tenant_id') ?? Tenant::first()?->id;
+
         $user = User::create([
+            'tenant_id' => $tenantId,
             'phone' => $validated['phone'],
             'name' => $validated['name'],
             'last_name' => $validated['last_name'],

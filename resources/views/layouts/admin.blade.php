@@ -52,8 +52,13 @@
     <!-- Main Wrapper -->
     <div class="main-wrapper">
         <header class="top-header">
-            <div>
-                <h3 style="font-weight: 700; font-size: 18px;">@yield('page_title', 'Panel Administrativo')</h3>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <h3 style="font-weight: 700; font-size: 18px; margin: 0;">@yield('page_title', 'Panel Administrativo')</h3>
+                @if(isset($currentTenant))
+                    <a href="{{ route('tenant.login', $currentTenant->slug) }}" target="_blank" class="btn btn-secondary btn-sm" style="font-size: 11px; font-weight: 700; padding: 4px 10px; gap: 6px; border-color: rgba(192, 132, 252, 0.4); text-decoration: none;">
+                        <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--primary);"></i> Ver Mi Portal Alumnas
+                    </a>
+                @endif
             </div>
             
             <div class="user-menu">
