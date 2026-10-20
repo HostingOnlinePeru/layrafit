@@ -89,27 +89,42 @@
                     <i class="fa-solid fa-crown" style="margin-right: 6px; color: #f59e0b;"></i> 3. Plan de Membresía FitClass
                 </h4>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
-                    <!-- Opción 6 Meses -->
-                    <label style="cursor: pointer; border: 2px solid rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 16px; background: rgba(15, 23, 42, 0.6); display: flex; align-items: flex-start; gap: 12px;">
-                        <input type="radio" name="plan_period" value="6_months" {{ old('plan_period', '6_months') === '6_months' ? 'checked' : '' }} style="margin-top: 4px;">
-                        <div>
-                            <div style="font-size: 15px; font-weight: 800; color: #fff;">Plan Semestral (6 Meses)</div>
-                            <div style="font-size: 22px; font-weight: 900; color: #38bdf8; margin: 4px 0;">$30 <span style="font-size: 13px; font-weight: 600; color: var(--text-muted);">USD</span></div>
-                            <div style="font-size: 12px; color: var(--text-muted);">Acceso completo al software durante 6 meses.</div>
-                        </div>
-                    </label>
-
-                    <!-- Opción 1 Año -->
-                    <label style="cursor: pointer; border: 2px solid rgba(16, 185, 129, 0.4); border-radius: 12px; padding: 16px; background: rgba(6, 78, 59, 0.2); display: flex; align-items: flex-start; gap: 12px; position: relative;">
-                        <div style="position: absolute; top: -10px; right: 12px; background: #10b981; color: #fff; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 10px;">MEJOR OFERTA</div>
-                        <input type="radio" name="plan_period" value="1_year" {{ old('plan_period') === '1_year' ? 'checked' : '' }} style="margin-top: 4px;">
-                        <div>
-                            <div style="font-size: 15px; font-weight: 800; color: #fff;">Plan Anual (1 Año)</div>
-                            <div style="font-size: 22px; font-weight: 900; color: #34d399; margin: 4px 0;">$50 <span style="font-size: 13px; font-weight: 600; color: var(--text-muted);">USD</span></div>
-                            <div style="font-size: 12px; color: var(--text-muted);">Acceso completo por 1 año completo con soporte premium.</div>
-                        </div>
-                    </label>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 16px;">
+                    @forelse($plans as $plan)
+                        <label style="cursor: pointer; border: 2px solid {{ $plan->duration_months >= 12 ? 'rgba(16, 185, 129, 0.5)' : 'rgba(59, 130, 246, 0.4)' }}; border-radius: 12px; padding: 16px; background: {{ $plan->duration_months >= 12 ? 'rgba(6, 78, 59, 0.25)' : 'rgba(15, 23, 42, 0.6)' }}; display: flex; align-items: flex-start; gap: 12px; position: relative;">
+                            @if($plan->badge)
+                                <div style="position: absolute; top: -10px; right: 12px; background: {{ $plan->duration_months >= 12 ? '#10b981' : '#3b82f6' }}; color: #fff; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 10px;">
+                                    {{ $plan->badge }}
+                                </div>
+                            @endif
+                            <input type="radio" name="plan_id" value="{{ $plan->id }}" {{ $loop->first ? 'checked' : '' }} style="margin-top: 4px;">
+                            <div>
+                                <div style="font-size: 14px; font-weight: 800; color: #fff;">{{ $plan->name }}</div>
+                                <div style="font-size: 22px; font-weight: 900; color: {{ $plan->duration_months >= 12 ? '#34d399' : '#38bdf8' }}; margin: 4px 0;">
+                                    ${{ number_format($plan->price, 0) }} <span style="font-size: 12px; font-weight: 600; color: var(--text-muted);">{{ $plan->currency }}</span>
+                                </div>
+                                <div style="font-size: 11px; color: var(--text-muted);">
+                                    {{ $plan->description ?? "Duración: {$plan->duration_months} meses" }}
+                                </div>
+                            </div>
+                        </label>
+                    @empty
+                        <!-- Fallback si no hay planes en BD -->
+                        <label style="cursor: pointer; border: 2px solid rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 16px; background: rgba(15, 23, 42, 0.6); display: flex; align-items: flex-start; gap: 12px;">
+                            <input type="radio" name="plan_period" value="6_months" checked style="margin-top: 4px;">
+                            <div>
+                                <div style="font-size: 14px; font-weight: 800; color: #fff;">Plan Semestral (6 Meses)</div>
+                                <div style="font-size: 22px; font-weight: 900; color: #38bdf8; margin: 4px 0;">$30 <span style="font-size: 12px; font-weight: 600; color: var(--text-muted);">USD</span></div>
+                            </div>
+                        </label>
+                        <label style="cursor: pointer; border: 2px solid rgba(16, 185, 129, 0.4); border-radius: 12px; padding: 16px; background: rgba(6, 78, 59, 0.2); display: flex; align-items: flex-start; gap: 12px;">
+                            <input type="radio" name="plan_period" value="1_year" style="margin-top: 4px;">
+                            <div>
+                                <div style="font-size: 14px; font-weight: 800; color: #fff;">Plan Anual (1 Año)</div>
+                                <div style="font-size: 22px; font-weight: 900; color: #34d399; margin: 4px 0;">$50 <span style="font-size: 12px; font-weight: 600; color: var(--text-muted);">USD</span></div>
+                            </div>
+                        </label>
+                    @endforelse
                 </div>
 
                 <div class="form-group" style="margin-bottom: 16px;">

@@ -51,10 +51,15 @@ class Tenant extends Model
 
     public function getPlanPeriodLabelAttribute(): string
     {
+        $plan = SaasPlan::where('slug', $this->plan_period)->first();
+        if ($plan) {
+            return $plan->name.' ($'.number_format($plan->price, 0).')';
+        }
+
         return match ($this->plan_period) {
             '6_months' => '6 Meses ($30)',
             '1_year' => '1 Año ($50)',
-            default => $this->plan_period,
+            default => $this->plan_period ?? 'Estándar',
         };
     }
 }

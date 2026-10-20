@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
+use App\Models\SaasPlan;
 use App\Models\Tenant;
 use App\Models\TenantSubscription;
 use App\Models\User;
@@ -38,7 +39,9 @@ class TenantController extends Controller
 
     public function create(): View
     {
-        return view('superadmin.tenants.create');
+        $plans = SaasPlan::where('is_active', true)->orderBy('sort_order')->get();
+
+        return view('superadmin.tenants.create', compact('plans'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -49,7 +52,8 @@ class TenantController extends Controller
             'owner_phone' => ['required', 'string', 'max:30', 'unique:users,phone'],
             'owner_email' => ['nullable', 'email', 'max:150'],
             'admin_password' => ['required', 'string', 'min:6'],
-            'plan_period' => ['required', 'in:6_months,1_year'],
+            'plan_id' => ['nullable', 'exists:saas_plans,id'],
+            'plan_period' => ['nullable', 'string'],
             'payment_reference' => ['nullable', 'string', 'max:100'],
             'notes' => ['nullable', 'string'],
         ], [
@@ -59,7 +63,6 @@ class TenantController extends Controller
             'owner_phone.unique' => 'Este número de teléfono ya está registrado como usuario en el sistema.',
             'admin_password.required' => 'Ingresa la contraseña para el administrador.',
             'admin_password.min' => 'La contraseña debe tener mínimo 6 caracteres.',
-            'plan_period.required' => 'Selecciona un periodo de membresía.',
         ]);
 
         $slugBase = Str::slug($validated['name']);
@@ -70,9 +73,25 @@ class TenantController extends Controller
             $counter++;
         }
 
-        $price = $validated['plan_period'] === '1_year' ? 50.00 : 30.00;
+        $plan = null;
+        if (! empty($validated['plan_id'])) {
+            $plan = SaasPlan::find($validated['plan_id']);
+        }
+
+        if ($plan) {
+            $period = $plan->slug;
+            $price = (float) $plan->price;
+            $durationMonths = $plan->duration_months;
+            $planLabel = $plan->name;
+        } else {
+            $period = $validated['plan_period'] ?? '6_months';
+            $durationMonths = $period === '1_year' ? 12 : 6;
+            $price = $period === '1_year' ? 50.00 : 30.00;
+            $planLabel = $period === '1_year' ? '1 Año ($50)' : '6 Meses ($30)';
+        }
+
         $startsAt = now();
-        $endsAt = $validated['plan_period'] === '1_year' ? now()->addYear() : now()->addMonths(6);
+        $endsAt = now()->addMonths($durationMonths);
 
         // 1. Crear Tenant
         $tenant = Tenant::create([
@@ -81,7 +100,7 @@ class TenantController extends Controller
             'owner_name' => $validated['owner_name'],
             'owner_phone' => $validated['owner_phone'],
             'owner_email' => $validated['owner_email'],
-            'plan_period' => $validated['plan_period'],
+            'plan_period' => $period,
             'plan_price' => $price,
             'status' => 'active',
             'subscription_starts_at' => $startsAt,
@@ -104,7 +123,7 @@ class TenantController extends Controller
         // 3. Registrar suscripción pagada
         TenantSubscription::create([
             'tenant_id' => $tenant->id,
-            'period' => $validated['plan_period'],
+            'period' => $period,
             'amount' => $price,
             'currency' => 'USD',
             'payment_method' => 'Registro Super Admin',
@@ -112,7 +131,7 @@ class TenantController extends Controller
             'starts_at' => $startsAt,
             'ends_at' => $endsAt,
             'status' => 'paid',
-            'notes' => 'Membresía inicial '.($validated['plan_period'] === '1_year' ? '1 Año ($50)' : '6 Meses ($30)'),
+            'notes' => 'Membresía inicial: '.$planLabel,
         ]);
 
         return redirect()->route('superadmin.tenants.index')
@@ -124,8 +143,9 @@ class TenantController extends Controller
         $tenant->load(['subscriptions' => fn ($q) => $q->latest(), 'users' => fn ($q) => $q->latest()]);
         $admins = $tenant->users->where('role', 'admin');
         $studentsCount = $tenant->users->where('role', 'student')->count();
+        $plans = SaasPlan::where('is_active', true)->orderBy('sort_order')->get();
 
-        return view('superadmin.tenants.show', compact('tenant', 'admins', 'studentsCount'));
+        return view('superadmin.tenants.show', compact('tenant', 'admins', 'studentsCount', 'plans'));
     }
 
     public function edit(Tenant $tenant): View
@@ -167,21 +187,37 @@ class TenantController extends Controller
     public function renew(Request $request, Tenant $tenant): RedirectResponse
     {
         $validated = $request->validate([
-            'plan_period' => ['required', 'in:6_months,1_year'],
+            'plan_id' => ['nullable', 'exists:saas_plans,id'],
+            'plan_period' => ['nullable', 'string'],
             'amount' => ['nullable', 'numeric'],
             'payment_method' => ['nullable', 'string'],
             'payment_reference' => ['nullable', 'string'],
         ]);
 
-        $period = $validated['plan_period'];
-        $price = ! empty($validated['amount']) ? (float) $validated['amount'] : ($period === '1_year' ? 50.00 : 30.00);
+        $plan = null;
+        if (! empty($validated['plan_id'])) {
+            $plan = SaasPlan::find($validated['plan_id']);
+        }
+
+        if ($plan) {
+            $period = $plan->slug;
+            $durationMonths = $plan->duration_months;
+            $price = ! empty($validated['amount']) ? (float) $validated['amount'] : (float) $plan->price;
+            $planLabel = $plan->name;
+        } else {
+            $period = $validated['plan_period'] ?? '6_months';
+            $durationMonths = $period === '1_year' ? 12 : 6;
+            $defaultPrice = $period === '1_year' ? 50.00 : 30.00;
+            $price = ! empty($validated['amount']) ? (float) $validated['amount'] : $defaultPrice;
+            $planLabel = $period === '1_year' ? '1 Año ($50)' : '6 Meses ($30)';
+        }
 
         // Si la suscripción actual sigue vigente en el futuro, le sumamos el tiempo a partir de esa fecha, sino desde hoy
         $currentEnd = ($tenant->subscription_ends_at && $tenant->subscription_ends_at->isFuture())
             ? $tenant->subscription_ends_at->copy()
             : now();
 
-        $newEnd = $period === '1_year' ? $currentEnd->copy()->addYear() : $currentEnd->copy()->addMonths(6);
+        $newEnd = $currentEnd->copy()->addMonths($durationMonths);
 
         $tenant->update([
             'status' => 'active',
@@ -200,7 +236,7 @@ class TenantController extends Controller
             'starts_at' => $currentEnd,
             'ends_at' => $newEnd,
             'status' => 'paid',
-            'notes' => 'Renovación de membresía FitClass por '.($period === '1_year' ? '1 Año' : '6 Meses'),
+            'notes' => 'Renovación de membresía FitClass: '.$planLabel,
         ]);
 
         return back()->with('success', 'Membresía renovada con éxito hasta el '.$newEnd->format('d/m/Y').'.');

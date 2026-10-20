@@ -26,23 +26,29 @@
             <a href="{{ route('superadmin.tenants.index') }}" class="nav-item {{ request()->routeIs('superadmin.tenants.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-building-user nav-icon"></i> Academias y Cuentas
             </a>
+            <a href="{{ route('superadmin.plans.index') }}" class="nav-item {{ request()->routeIs('superadmin.plans.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-gem nav-icon" style="color: #f59e0b;"></i> Planes de Membresía
+            </a>
             <a href="{{ route('superadmin.tenants.create') }}" class="nav-item {{ request()->routeIs('superadmin.tenants.create') ? 'active' : '' }}">
                 <i class="fa-solid fa-plus-circle nav-icon"></i> Crear Nueva Cuenta
             </a>
         </nav>
 
         <div style="padding: 16px; margin-top: auto; border-top: 1px solid var(--border-color);">
-            <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 12px;">
-                <div style="font-size: 11px; font-weight: 800; color: #38bdf8; margin-bottom: 4px;">
-                    <i class="fa-solid fa-tag"></i> Planes FitClass
+            <a href="{{ route('superadmin.plans.index') }}" style="text-decoration: none; display: block;">
+                <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 12px; transition: all 0.2s;">
+                    <div style="font-size: 11px; font-weight: 800; color: #38bdf8; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center;">
+                        <span><i class="fa-solid fa-tag"></i> Tarifas FitClass</span>
+                        <i class="fa-solid fa-gear" style="font-size: 10px;"></i>
+                    </div>
+                    <div style="font-size: 11px; color: #fff; margin-bottom: 2px;">
+                        • 6 Meses: <strong>$30 USD</strong>
+                    </div>
+                    <div style="font-size: 11px; color: #fff;">
+                        • 1 Año: <strong>$50 USD</strong>
+                    </div>
                 </div>
-                <div style="font-size: 11px; color: #fff; margin-bottom: 2px;">
-                    • 6 Meses: <strong>$30 USD</strong>
-                </div>
-                <div style="font-size: 11px; color: #fff;">
-                    • 1 Año: <strong>$50 USD</strong>
-                </div>
-            </div>
+            </a>
         </div>
     </aside>
 

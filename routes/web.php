@@ -35,6 +35,7 @@ Route::post('/registro', [AuthController::class, 'register'])->name('register.pe
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashboardController;
+use App\Http\Controllers\SuperAdmin\SaasPlanController as SuperAdminSaasPlanController;
 use App\Http\Controllers\SuperAdmin\TenantController as SuperAdminTenantController;
 
 // Cambio Obligatorio de Contraseña (Primer login)
@@ -49,6 +50,10 @@ Route::middleware(['auth', MustChangePassword::class, CheckRole::class.':superad
     Route::resource('tenants', SuperAdminTenantController::class);
     Route::post('tenants/{tenant}/toggle', [SuperAdminTenantController::class, 'toggleStatus'])->name('tenants.toggle');
     Route::post('tenants/{tenant}/renew', [SuperAdminTenantController::class, 'renew'])->name('tenants.renew');
+
+    // Gestión de Membresías SaaS FitClass
+    Route::resource('plans', SuperAdminSaasPlanController::class)->except(['show']);
+    Route::post('plans/{plan}/toggle', [SuperAdminSaasPlanController::class, 'toggle'])->name('plans.toggle');
 });
 
 // Rutas de Administrador (Academia / Gimnasio)

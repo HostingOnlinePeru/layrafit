@@ -102,10 +102,16 @@
                     @csrf
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
                         <div>
-                            <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 4px;">Periodo</label>
-                            <select name="plan_period" class="form-control" style="width: 100%; background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 12px; padding: 8px;">
-                                <option value="6_months">6 Meses ($30)</option>
-                                <option value="1_year" selected>1 Año ($50)</option>
+                            <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 4px;">Plan / Membresía</label>
+                            <select name="plan_id" class="form-control" style="width: 100%; background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 12px; padding: 8px;">
+                                @forelse($plans as $p)
+                                    <option value="{{ $p->id }}" {{ $tenant->plan_period === $p->slug ? 'selected' : '' }}>
+                                        {{ $p->name }} (${{ number_format($p->price, 0) }})
+                                    </option>
+                                @empty
+                                    <option value="">6 Meses ($30)</option>
+                                    <option value="">1 Año ($50)</option>
+                                @endforelse
                             </select>
                         </div>
                         <div>
