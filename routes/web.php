@@ -22,9 +22,24 @@ use App\Http\Middleware\CheckRole;
 use App\Http\Middleware\MustChangePassword;
 use Illuminate\Support\Facades\Route;
 
-// RedirecciÃƒÂ³n inicial
+// Redirección inicial
 Route::get('/', function () {
     return redirect()->route('login');
+});
+
+// Landing Page FitClass
+Route::get('/landing', function () {
+    return response()->file(base_path('landing/index.html'));
+});
+Route::get('/landing/style.css', function () {
+    return response()->file(base_path('landing/style.css'), ['Content-Type' => 'text/css']);
+});
+Route::get('/landing/images/{file}', function ($file) {
+    $path = base_path('landing/images/' . $file);
+    if (file_exists($path)) {
+        return response()->file($path);
+    }
+    abort(404);
 });
 
 // Autenticación pública

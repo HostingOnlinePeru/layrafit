@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitClass — Software SaaS para Academias de Baile, Fitness y Gimnasios</title>
+  <meta name="description" content="FitClass es la plataforma SaaS todo en uno para academias de baile, zumba y funcional. Marca blanca con tu logo, asistencias por QR y cobros directos por Yape.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVEGACIÓN PRINCIPAL -->
+  <header class="landing-header">
+    <div class="landing-container nav-wrapper">
+      <a href="#" class="brand-logo">
+        <img src="images/fitclass-logo.svg" alt="FitClass Logo">
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#beneficios" class="nav-link">Beneficios</a></li>
+        <li><a href="#marca-blanca" class="nav-link">Marca Blanca</a></li>
+        <li><a href="#modulos" class="nav-link">Módulos</a></li>
+        <li><a href="#precios" class="nav-link">Precios</a></li>
+        <li><a href="#faq" class="nav-link">Preguntas</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <a href="/login" class="btn-pill btn-pill-outline" style="font-size: 13px; padding: 8px 18px;">
+          <i class="fa-solid fa-lock"></i> Ingreso Academia
+        </a>
+        <a href="#precios" class="btn-pill btn-pill-dark" style="font-size: 13px; padding: 8px 18px;">
+          Probar FitClass
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="landing-container">
+      <div class="hero-grid">
+        
+        <!-- Columna Izquierda: Copy & Acciones -->
+        <div>
+          <div class="hero-tagline">
+            <i class="fa-solid fa-bolt" style="color: #3b82f6;"></i> SOFTWARE SAAS PARA ACADEMIAS & ESTUDIOS FITNESS
+          </div>
+          
+          <h1 class="hero-title">
+            El Camino Exclusivo Para Crecer Tu Academia Con <span class="italic-accent">FitClass</span>
+          </h1>
+          
+          <p class="hero-desc">
+            La plataforma en la nube creada para dueñas y directores de academias de baile, zumba, funcional y fitness. Centraliza tus alumnas, controla asistencias digitales, recibe pagos a tu propio Yape y personaliza todo con <strong>tu propia marca</strong>.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#precios" class="btn-pill btn-pill-cyan" style="padding: 14px 30px; font-size: 15px;">
+              Ver Planes desde $30 <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            
+            <a href="/superadmin/login" class="btn-pill btn-pill-outline" style="padding: 14px 24px; font-size: 14px;">
+              <i class="fa-solid fa-shield-halved"></i> Super Admin
+            </a>
+          </div>
+
+          <div class="social-proof-icons" style="margin-bottom: 30px;">
+            <div style="color: #f59e0b; display: flex; gap: 3px; font-size: 14px;">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <span style="font-size: 13px; font-weight: 700; color: #0f172a;">4.9/5 de calificación</span>
+            <span style="font-size: 13px; color: #64748b;">(Más de 500 academias en Latinoamérica)</span>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="metric-item">
+              <div class="metric-val">500+</div>
+              <div class="metric-lbl">Academias Activas</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-val">50k+</div>
+              <div class="metric-lbl">Alumnas Gestionadas</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-val">100%</div>
+              <div class="metric-lbl">Marca Blanca Propia</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Tarjeta Visual Estilo Editorial -->
+        <div style="position: relative;">
+          <!-- SVG Sunburst Rosette flotante -->
+          <svg class="sunburst-stamp" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 0L55.9 34.1L85.4 14.6L65.9 44.1L100 50L65.9 55.9L85.4 85.4L55.9 65.9L50 100L44.1 65.9L14.6 85.4L34.1 55.9L0 50L34.1 44.1L14.6 14.6L44.1 34.1L50 0Z" fill="#3b82f6"/>
+          </svg>
+
+          <div class="hero-visual-card">
+            <div class="hero-img-wrap">
+              <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1000&q=80" alt="Entrenamiento Fitness en Academia">
+            </div>
+
+            <!-- Widget Flotante Superior: Estadísticas -->
+            <div class="glass-widget glass-widget-chart">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748b;">Asistencia Hoy</span>
+                <span style="font-size: 12px; font-weight: 800; color: #10b981; background: rgba(16, 185, 129, 0.15); padding: 2px 8px; border-radius: 9999px;">+94%</span>
+              </div>
+              <div style="font-size: 24px; font-weight: 900; color: #0f172a; line-height: 1;">384 Alumnas</div>
+              <div style="height: 6px; background: #e2e8f0; border-radius: 999px; margin-top: 10px; overflow: hidden;">
+                <div style="width: 94%; height: 100%; background: linear-gradient(90deg, #3b82f6, #06b6d4); border-radius: 999px;"></div>
+              </div>
+            </div>
+
+            <!-- Widget Flotante Inferior: Badge Alumnas -->
+            <div class="glass-widget glass-widget-badge">
+              <div class="avatar-group">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Alumna 1">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" alt="Alumna 2">
+                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=120&q=80" alt="Alumna 3">
+              </div>
+              <div>
+                <div style="font-size: 13px; font-weight: 800; color: #0f172a;">+18 Alumnas Nuevas</div>
+                <div style="font-size: 11px; color: #64748b;">Inscritas esta semana</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HIGHLIGHT BENTO: AUTONOMÍA TOTAL Y MARCA BLANCA -->
+  <section class="landing-container" id="marca-blanca">
+    <div class="bento-highlight">
+      <div class="bento-grid">
+        <div class="bento-img-frame">
+          <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1000&q=80" alt="Entrenadora en Academia">
+        </div>
+
+        <div>
+          <div style="font-size: 12px; font-weight: 800; color: #3b82f6; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">
+            TOTALMENTE PERSONALIZABLE
+          </div>
+          <h2 style="font-size: 34px; font-weight: 900; color: #0f172a; line-height: 1.15; margin-bottom: 16px;">
+            Tu Marca Propia. Sin intermediarios ni comisiones abusivas.
+          </h2>
+          <p style="font-size: 15px; color: #64748b; line-height: 1.6; margin-bottom: 24px;">
+            A diferencia de otras plataformas que promocionan su propia marca sobre la tuya, con <strong>FitClass</strong> tu academia es la verdadera protagonista. Sube tu logotipo, tu portada oficial, tu dirección y configura tus propios números de Yape, Plin y cuentas bancarias.
+          </p>
+
+          <div class="feature-badge-row">
+            <div class="feature-glass-pill">
+              <i class="fa-solid fa-paintbrush"></i>
+              <span>Tu Logo & Portada</span>
+            </div>
+            <div class="feature-glass-pill">
+              <i class="fa-solid fa-qrcode"></i>
+              <span>QR de Asistencias</span>
+            </div>
+            <div class="feature-glass-pill">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+              <span>Yape Directo 100%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÓDULOS DEL SISTEMA: 6 CARDS EDITORIALES -->
+  <section class="landing-container" id="modulos">
+    <div class="section-header">
+      <div class="section-subtitle">FUNCIONALIDADES DISEÑADAS PARA ACADEMIAS</div>
+      <h2 class="section-title">Todo lo que Necesitas en un Solo Sistema</h2>
+      <p style="color: #64748b; font-size: 15px; margin-top: 10px;">
+        Optimiza tus tiempos administrativos y enfócate en lo más importante: brindar la mejor experiencia en cada clase.
+      </p>
+    </div>
+
+    <div class="modules-grid">
+      
+      <!-- Card 01 -->
+      <div class="module-card">
+        <span class="module-card-tag">01</span>
+        <img class="module-card-bg" src="https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?auto=format&fit=crop&w=800&q=80" alt="Baile & Ritmos">
+        <div class="module-card-overlay"></div>
+        <div class="module-card-content">
+          <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 4px;">Baile & Zumba</h3>
+          <p style="font-size: 13px; opacity: 0.9;">Control de cupos, salones, coreografías y registro de alumnas por nivel.</p>
+          <div class="module-pill-btn"><i class="fa-solid fa-circle-check"></i> Activo</div>
+        </div>
+      </div>
+
+      <!-- Card 02 -->
+      <div class="module-card">
+        <span class="module-card-tag">02</span>
+        <img class="module-card-bg" src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80" alt="Funcional & HIIT">
+        <div class="module-card-overlay"></div>
+        <div class="module-card-content">
+          <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 4px;">Funcional & HIIT</h3>
+          <p style="font-size: 13px; opacity: 0.9;">Turnos organizados, intensidad de circuitos y seguimiento de objetivos físicos.</p>
+          <div class="module-pill-btn"><i class="fa-solid fa-circle-check"></i> Activo</div>
+        </div>
+      </div>
+
+      <!-- Card 03 -->
+      <div class="module-card">
+        <span class="module-card-tag">03</span>
+        <img class="module-card-bg" src="https://images.unsplash.com/photo-1584466977773-e625c37cdd50?auto=format&fit=crop&w=800&q=80" alt="Control de Asistencias">
+        <div class="module-card-overlay"></div>
+        <div class="module-card-content">
+          <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 4px;">Asistencias Digitales</h3>
+          <p style="font-size: 13px; opacity: 0.9;">Lector QR rápido y lista de pase con 1 clic. Adiós a cuadernos y hojas sueltas.</p>
+          <div class="module-pill-btn"><i class="fa-solid fa-circle-check"></i> Activo</div>
+        </div>
+      </div>
+
+      <!-- Card 04 -->
+      <div class="module-card">
+        <span class="module-card-tag">04</span>
+        <img class="module-card-bg" src="https://images.unsplash.com/photo-1554415707-9e49016a3070?auto=format&fit=crop&w=800&q=80" alt="Membresías & Pagos">
+        <div class="module-card-overlay"></div>
+        <div class="module-card-content">
+          <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 4px;">Membresías & Cuotas</h3>
+          <p style="font-size: 13px; opacity: 0.9;">Monitoreo de vencimientos, recordatorios de pago y registro de transferencias.</p>
+          <div class="module-pill-btn"><i class="fa-solid fa-circle-check"></i> Activo</div>
+        </div>
+      </div>
+
+      <!-- Card 05 -->
+      <div class="module-card">
+        <span class="module-card-tag">05</span>
+        <img class="module-card-bg" src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=800&q=80" alt="Profesores y Alumnas">
+        <div class="module-card-overlay"></div>
+        <div class="module-card-content">
+          <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 4px;">Accesos para Alumnas</h3>
+          <p style="font-size: 13px; opacity: 0.9;">Portal exclusivo donde cada alumna consulta sus asistencias y cuotas.</p>
+          <div class="module-pill-btn"><i class="fa-solid fa-circle-check"></i> Activo</div>
+        </div>
+      </div>
+
+      <!-- Card 06 -->
+      <div class="module-card">
+        <span class="module-card-tag">06</span>
+        <img class="module-card-bg" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80" alt="Sorteos & Fidelización">
+        <div class="module-card-overlay"></div>
+        <div class="module-card-content">
+          <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 4px;">Ruleta de Sorteos</h3>
+          <p style="font-size: 13px; opacity: 0.9;">Premia la fidelidad y puntualidad de tus alumnas con dinámicas interactivas.</p>
+          <div class="module-pill-btn"><i class="fa-solid fa-circle-check"></i> Activo</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MARQUEE RUNNING TICKER -->
+  <div class="marquee-bar">
+    <div class="marquee-inner">
+      <span>FITCLASS SAAS ✦ TU ACADEMIA EN LA NUBE ✦ MARCA BLANCA 100% ✦ CONTROL DE ASISTENCIAS ✦ COBROS DIRECTOS CON YAPE ✦ SIN COMISIÓN POR ALUMNA ✦ ENLACES PERSONALIZADOS ✦ SOPORTE INCLUIDO ✦ FITCLASS SAAS ✦ TU ACADEMIA EN LA NUBE ✦ MARCA BLANCA 100% ✦ CONTROL DE ASISTENCIAS ✦</span>
+    </div>
+  </div>
+
+  <!-- EXHIBITION / NUMBERED ACCORDION SECTION (01 - 04) -->
+  <section class="landing-container" id="beneficios">
+    <div class="section-header">
+      <div class="section-subtitle">POR QUÉ ELEGIR FITCLASS</div>
+      <h2 class="section-title">El Estándar que Tu Negocio Merece</h2>
+    </div>
+
+    <div class="accordion-list">
+      <div class="accordion-item">
+        <div class="accordion-left">
+          <span class="accordion-num">01</span>
+          <div>
+            <div class="accordion-name">Tu Propia Identidad Visual (Marca Blanca)</div>
+            <div class="accordion-desc">Tus alumnas ven el nombre, logotipo, portada y colores de tu academia, no los nuestros.</div>
+          </div>
+        </div>
+        <i class="fa-solid fa-arrow-right" style="color: #94a3b8;"></i>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-left">
+          <span class="accordion-num">02</span>
+          <div>
+            <div class="accordion-name">Cobros 100% Directos a Tus Cuentas</div>
+            <div class="accordion-desc">Configura tu Yape, Plin y cuentas bancarias. El dinero entra directo a tus manos sin retenciones.</div>
+          </div>
+        </div>
+        <i class="fa-solid fa-arrow-right" style="color: #94a3b8;"></i>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-left">
+          <span class="accordion-num">03</span>
+          <div>
+            <div class="accordion-name">Pase de Lista Inteligente y Asistencias QR</div>
+            <div class="accordion-desc">Registra la llegada de cada alumna en segundos desde cualquier celular, tablet o laptop.</div>
+          </div>
+        </div>
+        <i class="fa-solid fa-arrow-right" style="color: #94a3b8;"></i>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-left">
+          <span class="accordion-num">04</span>
+          <div>
+            <div class="accordion-name">Cero Instalaciones, 100% en la Nube</div>
+            <div class="accordion-desc">Accede desde cualquier lugar las 24 horas del día. Tus datos están seguros con copias de respaldo continuas.</div>
+          </div>
+        </div>
+        <i class="fa-solid fa-arrow-right" style="color: #94a3b8;"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABLA DE PRECIOS: 6 MESES A $30 Y 1 AÑO A $50 -->
+  <section class="landing-container" id="precios">
+    <div class="pricing-section">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+        <div class="section-subtitle">PLANES DE SUSCRIPCIÓN SAAS</div>
+        <h2 style="font-size: 38px; font-weight: 900; color: #0f172a; margin-top: 6px;">
+          Comienza Hoy Con Tarifas de Lanzamiento
+        </h2>
+        <p style="color: #64748b; font-size: 15px; margin-top: 8px;">
+          Sin contratos forzosos. Elige el periodo que prefieras y accede de inmediato.
+        </p>
+      </div>
+
+      <div class="pricing-grid">
+        
+        <!-- PLAN 1: 6 MESES A $30 -->
+        <div class="price-box">
+          <div>
+            <div class="price-period">Plan Semestral</div>
+            <div style="font-size: 13px; color: #64748b;">Ideal para arrancar y digitalizar tu academia</div>
+
+            <div class="price-amount">
+              $30 <span>USD / 6 meses</span>
+            </div>
+            <div style="font-size: 12px; color: #10b981; font-weight: 700;">
+              Equivale a solo $5.00 USD por mes
+            </div>
+
+            <ul class="price-features">
+              <li><i class="fa-solid fa-circle-check"></i> Acceso completo a FitClass por 6 meses</li>
+              <li><i class="fa-solid fa-circle-check"></i> Alumnas y membresías ilimitadas</li>
+              <li><i class="fa-solid fa-circle-check"></i> Marca blanca con tu propio logotipo</li>
+              <li><i class="fa-solid fa-circle-check"></i> Portada oficial de tu academia</li>
+              <li><i class="fa-solid fa-circle-check"></i> Configuración de Yape, Plin y bancos</li>
+              <li><i class="fa-solid fa-circle-check"></i> Control de asistencias diario por QR</li>
+              <li><i class="fa-solid fa-circle-check"></i> Enlace personalizado para tus alumnas</li>
+              <li><i class="fa-solid fa-circle-check"></i> Soporte por correo y WhatsApp</li>
+            </ul>
+          </div>
+
+          <a href="https://wa.me/51999999999?text=Hola,%20deseo%20activar%20mi%20Plan%20Semestral%20de%20FitClass%20por%20$30%20USD" target="_blank" class="btn-pill btn-pill-outline" style="width: 100%; text-align: center; padding: 14px 0;">
+            Elegir Plan Semestral ($30)
+          </a>
+        </div>
+
+        <!-- PLAN 2: 1 AÑO A $50 (DESTACADO / POPULAR) -->
+        <div class="price-box featured">
+          <div class="price-badge-top">⭐ MÁS POPULAR — MEJOR VALOR</div>
+          
+          <div>
+            <div class="price-period" style="color: #3b82f6;">Plan Anual Premium</div>
+            <div style="font-size: 13px; color: #64748b;">Para academias comprometidas con el máximo crecimiento</div>
+
+            <div class="price-amount">
+              $50 <span>USD / 1 año</span>
+            </div>
+            <div style="font-size: 12px; color: #3b82f6; font-weight: 800;">
+              ¡Ahorras más del 30%! Equivale a solo $4.16 USD al mes
+            </div>
+
+            <ul class="price-features">
+              <li><i class="fa-solid fa-circle-check"></i> <strong>Acceso completo por 12 meses (1 año)</strong></li>
+              <li><i class="fa-solid fa-circle-check"></i> Alumnas, clases y docentes ilimitados</li>
+              <li><i class="fa-solid fa-circle-check"></i> <strong>Marca blanca 100% autónoma</strong></li>
+              <li><i class="fa-solid fa-circle-check"></i> Personalización de portada y logo ilimitado</li>
+              <li><i class="fa-solid fa-circle-check"></i> Módulo de Ruleta interactiva y sorteos</li>
+              <li><i class="fa-solid fa-circle-check"></i> Cobros directos a tus billeteras digitales</li>
+              <li><i class="fa-solid fa-circle-check"></i> Registro y reportes exportables en Excel</li>
+              <li><i class="fa-solid fa-circle-check"></i> <strong>Soporte prioritario VIP por WhatsApp</strong></li>
+              <li><i class="fa-solid fa-circle-check"></i> Actualizaciones y mejoras incluidas</li>
+            </ul>
+          </div>
+
+          <a href="https://wa.me/51999999999?text=Hola,%20deseo%20activar%20mi%20Plan%20Anual%20de%20FitClass%20por%20$50%20USD" target="_blank" class="btn-pill btn-pill-cyan" style="width: 100%; text-align: center; padding: 14px 0;">
+            Elegir Plan Anual ($50) <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE PREGUNTAS FRECUENTES (FAQ) -->
+  <section class="landing-container" id="faq">
+    <div class="section-header">
+      <div class="section-subtitle">RESOLVEMOS TUS DUDAS</div>
+      <h2 class="section-title">Preguntas Frecuentes</h2>
+    </div>
+
+    <div class="faq-wrap">
+      <details class="faq-item" open>
+        <summary class="faq-question">
+          <span>¿Necesito instalar algún programa en mi computadora?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </summary>
+        <div class="faq-answer">
+          No. FitClass es 100% en la nube (SaaS). Puedes utilizarlo inmediatamente desde cualquier teléfono móvil, tablet, laptop o PC con conexión a internet.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>¿FitClass me cobra comisiones por cada alumna que se inscribe?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </summary>
+        <div class="faq-answer">
+          ¡Cero comisiones! El pago de tus alumnas va 100% directo a tu Yape, Plin o cuenta bancaria. FitClass solo te cobra la membresía de la plataforma ($30 por 6 meses o $50 por el año completo).
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>¿Cómo funciona la Marca Blanca para mi academia?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </summary>
+        <div class="faq-answer">
+          Desde tu panel de administración puedes subir el logotipo de tu academia, tu imagen de portada, tus teléfonos de contacto, dirección y tus datos de pago. Tus alumnas y profesores ingresan a tu propio portal con tu imagen visual.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>¿Cómo se realiza el control de asistencias?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </summary>
+        <div class="faq-answer">
+          Puedes registrar la asistencia en segundos mostrando el código QR de la clase para que tus alumnas lo escaneen desde sus celulares, o pasando la lista digital con un solo clic desde tu teléfono o tablet.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>¿Qué métodos de pago aceptan para suscribirme a FitClass?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </summary>
+        <div class="faq-answer">
+          Aceptamos transferencias bancarias (BCP, Interbank, BBVA), Yape, Plin y pagos con tarjeta de crédito/débito o PayPal para clientes internacionales.
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- PIE DE PÁGINA (FOOTER BIG WATERMARK) -->
+  <footer class="footer-big">
+    <div class="landing-container">
+      <div class="footer-grid">
+        
+        <div class="footer-col">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+            <img src="images/fitclass-logo.svg" alt="FitClass" style="height: 36px; filter: brightness(0) invert(1);">
+          </div>
+          <p style="color: #94a3b8; font-size: 14px; max-width: 380px; line-height: 1.6;">
+            La plataforma líder de gestión para academias de baile, zumba, funcional y estudios fitness en Latinoamérica.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Plataforma</h4>
+          <ul class="footer-links">
+            <li><a href="#beneficios">Beneficios</a></li>
+            <li><a href="#marca-blanca">Marca Blanca</a></li>
+            <li><a href="#modulos">Módulos del Sistema</a></li>
+            <li><a href="#precios">Planes y Precios</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Accesos</h4>
+          <ul class="footer-links">
+            <li><a href="/login"><i class="fa-solid fa-door-open"></i> Login de Academia</a></li>
+            <li><a href="/superadmin/login"><i class="fa-solid fa-shield-halved"></i> Super Admin Portal</a></li>
+            <li><a href="https://wa.me/51999999999" target="_blank"><i class="fa-brands fa-whatsapp"></i> Contactar Ventas</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 FitClass SaaS. Todos los derechos reservados. Diseñado para potenciar tu academia.</div>
+        <div style="display: flex; gap: 20px;">
+          <a href="#" style="color: #64748b; text-decoration: none;">Términos</a>
+          <a href="#" style="color: #64748b; text-decoration: none;">Privacidad</a>
+          <a href="/superadmin/login" style="color: #64748b; text-decoration: none;">Super Admin</a>
+        </div>
+      </div>
+
+      <!-- Watermark Gigante del Footer que coincide exactamente con el diseño -->
+      <div class="footer-watermark">
+        FITCLASS
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+  <a href="https://wa.me/51999999999?text=Hola,%20quisiera%20más%20información%20sobre%20FitClass%20para%20mi%20academia" class="float-whatsapp" target="_blank" title="Contactar por WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+</body>
+</html>
