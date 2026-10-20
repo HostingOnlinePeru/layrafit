@@ -772,5 +772,130 @@ body {background: linear-gradient(165deg, #c9ccc6 0%, #e4e6e1 28%, #f2f3f0 60%, 
     <i class="fa-brands fa-whatsapp"></i>
   </a>
 
+  <!-- GSAP & ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // 1. TIMELINE DE ENTRADA EN EL HERO
+      const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      heroTl
+        .from(".topbar", { y: -35, opacity: 0, duration: 0.7, clearProps: "transform" })
+        .from(".hero-heading", { y: 55, opacity: 0, duration: 0.85, clearProps: "transform" }, "-=0.35")
+        .from(".hero-copy", { y: 35, opacity: 0, duration: 0.7, clearProps: "transform" }, "-=0.55")
+        .from(".hero-cta-row > *", { y: 28, opacity: 0, stagger: 0.14, duration: 0.65, clearProps: "transform" }, "-=0.45")
+        .from(".hero-stats > div", { y: 30, opacity: 0, stagger: 0.16, duration: 0.65, clearProps: "transform" }, "-=0.4")
+        .from(".hero-portrait-frame", { scale: 0.9, y: 45, opacity: 0, duration: 0.95, clearProps: "transform" }, "-=0.85")
+        .from(".node-overlay path", { opacity: 0, duration: 0.6 }, "-=0.4")
+        .from(".node-overlay circle", { scale: 0, transformOrigin: "center center", stagger: 0.1, duration: 0.5, ease: "back.out(2)" }, "-=0.45")
+        .from(".float-chart-card", { x: 55, y: -15, opacity: 0, duration: 0.75, ease: "back.out(1.5)", clearProps: "transform" }, "-=0.55")
+        .from(".bars-wrap .bar-fill", { scaleY: 0, transformOrigin: "bottom center", stagger: 0.06, duration: 0.55, ease: "power2.out" }, "-=0.4")
+        .from(".float-members-pill", { x: -55, y: 15, opacity: 0, duration: 0.75, ease: "back.out(1.5)", clearProps: "transform" }, "-=0.6");
+
+      // 2. SECCIÓN BENTO (POR QUÉ FITCLASS FUNCIONA)
+      const bentoTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#como-funciona",
+          start: "top 82%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      bentoTl
+        .from("#como-funciona", { y: 50, opacity: 0, duration: 0.8, ease: "power3.out", clearProps: "transform" })
+        .from(".why-visual-box", { x: -45, scale: 0.94, opacity: 0, duration: 0.75, ease: "power3.out", clearProps: "transform" }, "-=0.5")
+        .from(".why-tag-pill, .why-desc", { y: 25, opacity: 0, stagger: 0.12, duration: 0.6, ease: "power2.out", clearProps: "transform" }, "-=0.45")
+        .from(".mini-glass-box", { y: 40, scale: 0.88, opacity: 0, stagger: 0.14, duration: 0.65, ease: "back.out(1.4)", clearProps: "transform" }, "-=0.35");
+
+      // 3. SECCIÓN MARCA BLANCA (BALANCED SECTION)
+      const brandTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#marca-blanca",
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      brandTl
+        .from("#marca-blanca .sec-heading, #marca-blanca .sec-text", { x: -45, opacity: 0, stagger: 0.15, duration: 0.75, ease: "power3.out", clearProps: "transform" })
+        .from(".dual-option-cards > div", { y: 35, scale: 0.92, opacity: 0, stagger: 0.15, duration: 0.65, ease: "back.out(1.4)", clearProps: "transform" }, "-=0.4")
+        .from(".signature-block", { y: 20, opacity: 0, duration: 0.5, clearProps: "transform" }, "-=0.3")
+        .from(".balanced-photo-box", { scale: 0.88, rotation: 3, y: 40, opacity: 0, duration: 0.85, ease: "power3.out", clearProps: "transform" }, "-=0.75")
+        .from(".calories-float-widget", { x: 50, y: -20, opacity: 0, duration: 0.7, ease: "back.out(1.5)", clearProps: "transform" }, "-=0.45")
+        .from(".cal-bar-fill", { width: "0%", duration: 0.9, ease: "power2.out" }, "-=0.3");
+
+      // 4. SECCIÓN MÓDULOS (6 TARJETAS YOGA/FITNESS)
+      const modTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#modulos",
+          start: "top 78%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      modTl
+        .from(".showcase-head-row > *", { y: 40, opacity: 0, stagger: 0.15, duration: 0.75, ease: "power3.out", clearProps: "transform" })
+        .from(".yoga-card", { y: 65, scale: 0.92, opacity: 0, stagger: 0.12, duration: 0.75, ease: "power3.out", clearProps: "transform" }, "-=0.35")
+        .from("#modulos .center-btn-row", { y: 25, opacity: 0, duration: 0.6, clearProps: "transform" }, "-=0.25");
+
+      // 5. SECCIÓN PRECIOS ($30 Y $50)
+      const priceTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#precios",
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      priceTl
+        .from("#precios .sec-heading, #precios p", { y: 35, opacity: 0, stagger: 0.12, duration: 0.7, ease: "power3.out", clearProps: "transform" })
+        .from(".saas-price-card", { y: 60, scale: 0.94, opacity: 0, stagger: 0.2, duration: 0.85, ease: "back.out(1.2)", clearProps: "transform" }, "-=0.3");
+
+      // 6. SECCIÓN TESTIMONIOS (3 REFERENTES FITNESS)
+      const testiTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#testimonios",
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      testiTl
+        .from("#testimonios .sec-heading, #testimonios p", { y: 35, opacity: 0, stagger: 0.12, duration: 0.7, ease: "power3.out", clearProps: "transform" })
+        .from(".testimonial-card", { y: 60, scale: 0.92, opacity: 0, stagger: 0.16, duration: 0.8, ease: "back.out(1.3)", clearProps: "transform" }, "-=0.3");
+
+      // 7. SECCIÓN BENEFICIOS NUMERADOS (01 - 04)
+      const benefTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#beneficios",
+          start: "top 82%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      benefTl
+        .from(".exhibition-ticker > *", { scale: 0.85, opacity: 0, stagger: 0.08, duration: 0.6, ease: "back.out(1.4)", clearProps: "transform" })
+        .from(".exhibition-row", { x: -50, opacity: 0, stagger: 0.14, duration: 0.7, ease: "power3.out", clearProps: "transform" }, "-=0.25");
+
+      // 8. FOOTER VENDEDOR + FIRMA MONUMENTAL
+      const footerTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".giant-footer",
+          start: "top 85%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      footerTl
+        .from(".footer-sales-card", { y: 55, scale: 0.95, opacity: 0, duration: 0.85, ease: "power3.out", clearProps: "transform" })
+        .from(".footer-columns > div", { y: 35, opacity: 0, stagger: 0.12, duration: 0.65, ease: "power2.out", clearProps: "transform" }, "-=0.35")
+        .from(".footer-monumental", { y: 80, opacity: 0, duration: 1, ease: "power4.out", clearProps: "transform" }, "-=0.25");
+    });
+  </script>
+
 </body>
 </html>
