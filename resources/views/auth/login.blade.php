@@ -15,7 +15,7 @@
         <!-- Formulario de Login (Izquierda) -->
         <div class="auth-form-side">
             <div style="text-align: center; margin-bottom: 24px;">
-                <img src="/images/logo.png" alt="Layra Fit" style="max-width: 210px; width: 100%; height: auto; margin: 0 auto; display: block; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));">
+                <img src="{{ isset($currentTenant) ? $currentTenant->logo_path : '/images/logo.png' }}" alt="{{ $currentTenant->name ?? 'Layra Fit' }}" style="max-width: 210px; width: 100%; height: auto; max-height: 70px; object-fit: contain; margin: 0 auto; display: block; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));">
             </div>
 
 
@@ -69,15 +69,18 @@
             </div>
         </div>
 
-        <!-- Imagen Derecha: Marely -->
+        <!-- Imagen Derecha: Portada Personalizada / Marca Blanca -->
         <div class="auth-image-side">
-            <img src="/images/Guapisima-Marely-Piscoya-1.png" alt="Marely - Layra Fit" class="auth-image-bg">
+            <img src="{{ isset($currentTenant) ? $currentTenant->cover_path : '/images/Guapisima-Marely-Piscoya-1.png' }}" alt="{{ $currentTenant->name ?? 'Layra Fit' }}" class="auth-image-bg">
             <div class="auth-image-overlay">
                 <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 4px;">
-                    <img src="/images/zimzumba.svg" alt="ZIN Zumba" style="height: 38px; width: auto; max-width: 130px; display: block; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));">
-                    <div class="auth-image-title" style="margin-bottom: 0;">Marely Piscoya</div>
+                    <div class="auth-image-title" style="margin-bottom: 0;">
+                        {{ !empty($currentTenant->cover_title) ? $currentTenant->cover_title : ($currentTenant->owner_name ?? 'Marely Piscoya') }}
+                    </div>
                 </div>
-                <div class="auth-image-sub">Pasión, Baile y Estilo de Vida Saludable</div>
+                <div class="auth-image-sub">
+                    {{ !empty($currentTenant->cover_subtitle) ? $currentTenant->cover_subtitle : 'Pasión, Baile y Estilo de Vida Saludable' }}
+                </div>
             </div>
         </div>
 

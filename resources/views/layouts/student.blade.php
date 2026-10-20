@@ -5,7 +5,7 @@
     <!-- Header Alumno Mobile -->
     <header style="height: 65px; background: rgba(15, 18, 28, 0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; sticky: top; top: 0; z-index: 900;">
         <div style="display: flex; align-items: center; gap: 10px;">
-            <img src="/images/logo.png" alt="Layra Fit" style="max-height: 34px; width: auto; max-width: 140px; display: block;">
+            <img src="{{ isset($currentTenant) ? $currentTenant->logo_path : '/images/logo.png' }}" alt="{{ $currentTenant->name ?? 'Layra Fit' }}" style="max-height: 34px; width: auto; max-width: 140px; display: block;">
         </div>
 
 

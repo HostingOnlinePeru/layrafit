@@ -5,7 +5,7 @@
     <!-- Sidebar Admin -->
     <aside class="sidebar">
         <div class="sidebar-header" style="padding: 16px;">
-            <img src="/images/logo.png" alt="Layra Fit" style="max-height: 42px; width: auto; max-width: 180px; display: block; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));">
+            <img src="{{ isset($currentTenant) ? $currentTenant->logo_path : '/images/logo.png' }}" alt="{{ $currentTenant->name ?? 'Layra Fit' }}" style="max-height: 42px; width: auto; max-width: 180px; display: block; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));">
         </div>
 
 
@@ -43,8 +43,8 @@
             <a href="{{ route('admin.raffles.index') }}" class="nav-item {{ request()->routeIs('admin.raffles.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-gift nav-icon"></i> Sorteos
             </a>
-            <a href="{{ route('admin.settings.payment-methods') }}" class="nav-item {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-gear nav-icon"></i> Configuración
+            <a href="{{ route('admin.settings.general') }}" class="nav-item {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-gear nav-icon"></i> Mi Marca y Ajustes
             </a>
         </nav>
     </aside>

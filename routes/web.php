@@ -34,6 +34,7 @@ Route::get('/registro', [AuthController::class, 'showRegister'])->name('register
 Route::post('/registro', [AuthController::class, 'register'])->name('register.perform');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashboardController;
 use App\Http\Controllers\SuperAdmin\SaasPlanController as SuperAdminSaasPlanController;
 use App\Http\Controllers\SuperAdmin\TenantController as SuperAdminTenantController;
@@ -73,7 +74,9 @@ Route::middleware(['auth', MustChangePassword::class, CheckRole::class.':admin']
     Route::post('pagos/{payment}/aprobar', [AdminPaymentValidationController::class, 'approve'])->name('payments.approve');
     Route::post('pagos/{payment}/rechazar', [AdminPaymentValidationController::class, 'reject'])->name('payments.reject');
 
-    // ConfiguraciÃƒÂ³n MÃƒÂ©todos de Pago
+    // Configuración Marca Blanca, Contacto y Métodos de Pago
+    Route::get('configuracion/general', [SettingsController::class, 'edit'])->name('settings.general');
+    Route::put('configuracion/general', [SettingsController::class, 'update'])->name('settings.general.update');
     Route::get('configuracion/metodos-pago', [AdminPaymentMethodController::class, 'index'])->name('settings.payment-methods');
     Route::put('configuracion/metodos-pago/{paymentMethod}', [AdminPaymentMethodController::class, 'update'])->name('settings.payment-methods.update');
 
