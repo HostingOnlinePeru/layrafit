@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitClass — El Camino Perfecto Para Tu Academia Fitness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/landing/style.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+:root {--bg-base: #dcded8; --bg-light: #eceee9; --navy: #14202e; --slate: #4c6273; --text-muted: #5a6570; --glass: rgba(255, 255, 255, 0.55); --glass-strong: rgba(255, 255, 255, 0.78); --glass-border: rgba(255, 255, 255, 0.85);}
+* {box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;}
+html {scroll-behavior: smooth;}
+body {background: linear-gradient(165deg, #c9ccc6 0%, #e4e6e1 28%, #f2f3f0 60%, #dcdfe2 100%); color: var(--navy); overflow-x: hidden; line-height: 1.5;}
+.page-shell {max-width: 1120px; margin: 0 auto; padding: 0 32px; position: relative;}
+.topbar {display: flex; align-items: center; justify-content: space-between; padding: 28px 0; position: relative; z-index: 20;}
+.brand-mark {display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--navy); font-weight: 900; font-size: 24px; letter-spacing: -0.8px;}
+.brand-mark svg {width: 38px; height: 30px; flex-shrink: 0;}
+.nav-menu {display: flex; align-items: center; gap: 28px; list-style: none;}
+.nav-menu a {text-decoration: none; color: var(--navy); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; opacity: 0.75; transition: opacity 0.2s;}
+.nav-menu a:hover {opacity: 1;}
+.btn-contact-top {display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border-radius: 999px; background: rgba(255, 255, 255, 0.65); border: 1px solid rgba(255, 255, 255, 0.9); color: var(--navy); font-size: 11px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; text-decoration: none; backdrop-filter: blur(10px); transition: all 0.2s;}
+.btn-contact-top:hover {background: #ffffff; transform: translateY(-1px);}
+.hero-wrap {padding: 24px 0 60px; position: relative;}
+.hero-grid {display: grid; grid-template-columns: 1fr 1.05fr; gap: 36px; align-items: center;}
+.hero-heading {font-size: 56px; font-weight: 800; line-height: 1.04; letter-spacing: -1.8px; color: var(--navy); margin-bottom: 18px;}
+.hero-heading em {font-style: italic; font-weight: 800; color: var(--slate);}
+.hero-copy {font-size: 13.5px; color: var(--text-muted); max-width: 360px; line-height: 1.55; margin-bottom: 28px;}
+.hero-cta-row {display: flex; align-items: center; gap: 20px; margin-bottom: 54px;}
+.btn-white-pill {display: inline-flex; align-items: center; justify-content: center; padding: 12px 26px; border-radius: 999px; background: #ffffff; color: var(--navy); font-size: 11px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; text-decoration: none; box-shadow: 0 8px 20px rgba(20, 32, 46, 0.08); transition: all 0.2s;}
+.btn-white-pill:hover {transform: translateY(-2px); box-shadow: 0 12px 24px rgba(20, 32, 46, 0.14);}
+.community-box {border-left: 1px solid rgba(20, 32, 46, 0.18); padding-left: 18px;}
+.community-label {font-size: 10px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;}
+.community-icons {display: flex; align-items: center; gap: 10px; color: var(--navy); font-size: 13px;}
+.community-icons a {color: var(--navy); text-decoration: none; opacity: 0.85; transition: opacity 0.2s;}
+.community-icons a:hover {opacity: 1;}
+.hero-stats {display: flex; align-items: flex-start; gap: 42px;}
+.stat-num {font-size: 38px; font-weight: 800; letter-spacing: -1.5px; color: var(--navy); line-height: 1;}
+.stat-num em {font-style: italic;}
+.stat-caption {font-size: 11px; color: var(--text-muted); max-width: 130px; margin-top: 6px; line-height: 1.35;}
+.hero-stage {position: relative; display: flex; justify-content: center; align-items: center;}
+.hero-ambient-glow {position: absolute; bottom: -25px; width: 75%; height: 80px; background: radial-gradient(circle, rgba(37, 99, 235, 0.45) 0%, rgba(37, 99, 235, 0) 70%); filter: blur(22px); z-index: 0;}
+.sunburst-dark {position: absolute; top: 12px; left: 32px; width: 76px; height: 76px; z-index: 2; animation: slowSpin 30s linear infinite;}
+.sunburst-faint-left {position: absolute; left: -65px; bottom: 85px; width: 90px; height: 90px; opacity: 0.18; pointer-events: none;}
+@keyframes slowSpin {from {transform: rotate(0deg);} to {transform: rotate(360deg);}}
+.hero-portrait-frame {position: relative; width: 100%; max-width: 460px; height: 470px; border-radius: 36px; border: 1.5px solid var(--glass-border); background: linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.45) 100%); backdrop-filter: blur(8px); overflow: hidden; z-index: 3; box-shadow: 0 24px 48px rgba(20, 32, 46, 0.08);}
+.hero-portrait-frame img.main-model {width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;}
+.node-overlay {position: absolute; inset: 0; pointer-events: none; z-index: 4;}
+.float-chart-card {position: absolute; top: 44px; right: -10px; width: 145px; padding: 14px 16px; border-radius: 20px; background: rgba(255, 255, 255, 0.78); border: 1px solid #ffffff; backdrop-filter: blur(14px); box-shadow: 0 14px 30px rgba(20, 32, 46, 0.09); z-index: 6; text-align: center;}
+.chart-title {font-size: 9px; font-weight: 800; color: var(--navy); text-transform: capitalize; margin-bottom: 10px;}
+.bars-wrap {display: flex; align-items: flex-end; justify-content: space-between; height: 52px; gap: 5px; padding: 0 4px; margin-bottom: 6px;}
+.bar-col {display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1;}
+.bar-fill {width: 6px; border-radius: 99px; background: rgba(20, 32, 46, 0.2);}
+.bar-fill.active {background: var(--slate);}
+.bar-day {font-size: 7px; font-weight: 700; color: var(--text-muted);}
+.chart-foot {font-size: 8px; color: var(--text-muted); line-height: 1.25; margin-top: 4px;}
+.float-members-pill {position: absolute; bottom: 34px; left: -16px; display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 18px; background: rgba(255, 255, 255, 0.85); border: 1px solid #ffffff; backdrop-filter: blur(14px); box-shadow: 0 12px 28px rgba(20, 32, 46, 0.1); z-index: 6;}
+.pill-avatars {display: flex; align-items: center;}
+.pill-avatars img {width: 24px; height: 24px; border-radius: 50%; object-fit: cover; border: 1.5px solid #ffffff; margin-left: -6px;}
+.pill-avatars img:first-child {margin-left: 0;}
+.pill-meta-title {font-size: 9px; font-weight: 800; color: var(--navy); margin-bottom: 2px;}
+.pill-meta-sub {font-size: 8.5px; font-weight: 700; color: var(--text-muted);}
+.why-bento-card {background: linear-gradient(135deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.75) 100%); border: 1.5px solid var(--glass-border); border-radius: 36px; padding: 34px 40px; backdrop-filter: blur(14px); box-shadow: 0 20px 45px rgba(20, 32, 46, 0.06); display: grid; grid-template-columns: 0.95fr 1.25fr; gap: 36px; align-items: center; margin-bottom: 70px;}
+.why-visual-box {position: relative; height: 270px; border-radius: 26px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.18), rgba(20, 32, 46, 0.06));}
+.why-visual-box img {width: 100%; height: 100%; object-fit: cover; border-radius: 24px;}
+.why-tag-pill {display: inline-block; padding: 6px 14px; border-radius: 999px; background: rgba(76, 98, 115, 0.45); color: #ffffff; font-size: 9.5px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 14px;}
+.why-desc {font-size: 12.5px; color: var(--text-muted); line-height: 1.6; max-width: 460px; margin-bottom: 24px;}
+.why-mini-cards {display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;}
+.mini-glass-box {position: relative; height: 125px; border-radius: 20px; background: rgba(255, 255, 255, 0.55); border: 1.5px solid #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px; text-align: center; box-shadow: 0 8px 20px rgba(20, 32, 46, 0.04); transition: transform 0.2s;}
+.mini-glass-box:hover {transform: translateY(-4px); background: rgba(255, 255, 255, 0.85);}
+.mini-glass-box i {font-size: 32px; margin-bottom: 8px; background: linear-gradient(135deg, #14202e, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+.mini-glass-box.highlight-heart i {background: linear-gradient(135deg, #ef4444, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+.mini-glass-box span {font-size: 10px; font-weight: 800; color: var(--navy);}
+.mini-corner-btn {position: absolute; bottom: 8px; right: 8px; width: 22px; height: 22px; border-radius: 50%; background: var(--navy); color: #ffffff; font-size: 9px; display: flex; align-items: center; justify-content: center;}
+.balanced-section {display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 80px;}
+.sec-heading {font-size: 38px; font-weight: 800; line-height: 1.1; letter-spacing: -1.2px; color: var(--navy); margin-bottom: 16px;}
+.sec-heading em {font-style: italic; color: var(--slate);}
+.sec-text {font-size: 12.5px; color: var(--text-muted); line-height: 1.6; max-width: 400px; margin-bottom: 26px;}
+.dual-option-cards {display: flex; align-items: flex-end; gap: 14px; margin-bottom: 24px;}
+.option-card-dark {background: var(--navy); color: #ffffff; border-radius: 20px; padding: 18px; width: 155px; box-shadow: 0 14px 28px rgba(20, 32, 46, 0.18);}
+.option-card-head {display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; margin-bottom: 18px;}
+.option-card-head span.icon-circle {width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,0.15); display: inline-flex; align-items: center; justify-content: center; font-size: 11px;}
+.option-pill-btn {display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 7px 12px; border-radius: 999px; background: #ffffff; color: var(--navy); font-size: 9.5px; font-weight: 800; text-decoration: none;}
+.option-card-light {background: rgba(255, 255, 255, 0.55); border: 1px solid rgba(255,255,255,0.9); border-radius: 18px; padding: 14px 18px; display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700; color: var(--text-muted);}
+.signature-block {font-size: 10px; color: var(--text-muted);}
+.signature-script {font-family: Georgia, serif; font-style: italic; font-size: 16px; color: var(--navy); opacity: 0.7; margin-bottom: 2px;}
+.balanced-visual-wrap {position: relative; display: flex; justify-content: center;}
+.sunburst-mid {position: absolute; top: -22px; left: 24px; width: 72px; height: 72px; z-index: 4; animation: slowSpin 28s linear infinite;}
+.balanced-photo-box {width: 340px; height: 320px; border-radius: 32px; background: #ffffff; padding: 12px; box-shadow: 0 20px 45px rgba(20, 32, 46, 0.08); position: relative; z-index: 2; overflow: hidden;}
+.balanced-photo-box img {width: 100%; height: 100%; object-fit: cover; border-radius: 24px;}
+.calories-float-widget {position: absolute; top: 8px; right: 0; width: 210px; padding: 14px 18px; border-radius: 18px; background: rgba(255, 255, 255, 0.85); border: 1.5px solid #ffffff; backdrop-filter: blur(14px); box-shadow: 0 14px 30px rgba(20, 32, 46, 0.1); z-index: 5;}
+.cal-top {display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 800; color: var(--navy); margin-bottom: 8px;}
+.cal-top span.cal-val {font-weight: 600; color: var(--text-muted); font-size: 10px;}
+.cal-bar-track {width: 100%; height: 8px; border-radius: 99px; background: rgba(20, 32, 46, 0.12); overflow: hidden; margin-bottom: 6px;}
+.cal-bar-fill {width: 82%; height: 100%; border-radius: 99px; background: var(--navy);}
+.cal-sub {font-size: 8.5px; color: var(--text-muted);}
+.yoga-Showcase-wrapper {background: linear-gradient(180deg, rgba(200, 204, 202, 0.45) 0%, rgba(225, 228, 226, 0.7) 100%); padding: 70px 0; border-top: 1px solid rgba(255,255,255,0.5); border-bottom: 1px solid rgba(255,255,255,0.5);}
+.showcase-head-row {display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; gap: 24px;}
+.showcase-sub {font-size: 12px; color: var(--text-muted); max-width: 310px; line-height: 1.55;}
+.yoga-cards-grid {display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 36px;}
+.yoga-card {position: relative; height: 250px; border-radius: 28px; background: linear-gradient(180deg, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0.6) 100%); border: 1.5px solid var(--glass-border); overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 18px; backdrop-filter: blur(8px); transition: transform 0.25s ease, box-shadow 0.25s ease;}
+.yoga-card:hover {transform: translateY(-5px); box-shadow: 0 18px 36px rgba(20, 32, 46, 0.12);}
+.yoga-bg-word {position: absolute; top: 18px; left: 0; right: 0; text-align: center; font-size: 54px; font-weight: 900; color: #ffffff; letter-spacing: 1px; text-transform: uppercase; z-index: 1; pointer-events: none; opacity: 0.95;}
+.yoga-card img {position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2; mix-blend-mode: normal; mask-image: linear-gradient(to bottom, black 75%, transparent 100%);}
+.yoga-card-btn {position: relative; z-index: 4; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 11px 16px; border-radius: 16px; background: rgba(255, 255, 255, 0.78); border: 1px solid #ffffff; backdrop-filter: blur(12px); color: var(--navy); font-size: 11px; font-weight: 800; text-decoration: none; transition: background 0.2s;}
+.yoga-card-btn:hover {background: #ffffff;}
+.center-btn-row {text-align: center;}
+.btn-dark-pill {display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 32px; border-radius: 999px; background: var(--navy); color: #ffffff; font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; text-decoration: none; transition: all 0.2s;}
+.btn-dark-pill:hover {background: #233447; transform: translateY(-2px);}
+.pricing-showcase {padding: 75px 0 40px;}
+.pricing-cards-wrap {display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; max-width: 880px; margin: 36px auto 0;}
+.saas-price-card {border-radius: 32px; padding: 36px 32px; background: rgba(255, 255, 255, 0.65); border: 1.5px solid #ffffff; backdrop-filter: blur(14px); box-shadow: 0 18px 40px rgba(20, 32, 46, 0.06); display: flex; flex-direction: column; justify-content: space-between; position: relative;}
+.saas-price-card.dark-tier {background: var(--navy); color: #ffffff; border-color: rgba(255,255,255,0.2); box-shadow: 0 24px 50px rgba(20, 32, 46, 0.22);}
+.tier-badge {position: absolute; top: 20px; right: 24px; padding: 5px 12px; border-radius: 999px; background: rgba(255,255,255,0.16); color: #ffffff; font-size: 9.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px;}
+.tier-name {font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; opacity: 0.75; margin-bottom: 6px;}
+.tier-price {font-size: 52px; font-weight: 900; letter-spacing: -2px; line-height: 1; margin: 12px 0 6px;}
+.tier-price span {font-size: 15px; font-weight: 600; letter-spacing: 0; opacity: 0.7;}
+.tier-Note {font-size: 11.5px; opacity: 0.8; margin-bottom: 22px;}
+.tier-list {list-style: none; display: flex; flex-direction: column; gap: 11px; margin-bottom: 28px; font-size: 12.5px;}
+.tier-list li {display: flex; align-items: center; gap: 10px;}
+.tier-list li i {color: var(--slate);}
+.saas-price-card.dark-tier .tier-list li i {color: #38bdf8;}
+.exhibition-ticker {display: flex; align-items: center; justify-content: center; gap: 34px; padding: 48px 0 36px; overflow: hidden; white-space: nowrap;}
+.exhibition-word {font-size: 46px; font-weight: 800; letter-spacing: -1.5px; color: var(--slate); opacity: 0.85;}
+.exhibition-list {border-top: 1px solid rgba(20, 32, 46, 0.12); margin-bottom: 70px;}
+.exhibition-row {display: grid; grid-template-columns: 60px 1.2fr 1fr auto; align-items: center; gap: 24px; padding: 26px 0; border-bottom: 1px solid rgba(20, 32, 46, 0.12); transition: background 0.2s;}
+.ex-num {font-size: 11px; font-weight: 800; color: var(--navy);}
+.ex-title {font-size: 24px; font-weight: 800; font-style: italic; line-height: 1.1; color: var(--navy); max-width: 240px;}
+.ex-meta {font-size: 11px; color: var(--text-muted); line-height: 1.45;}
+.ex-btn {display: inline-flex; align-items: center; justify-content: center; padding: 9px 22px; border-radius: 999px; border: 1px solid var(--navy); color: var(--navy); font-size: 10.5px; font-weight: 700; text-decoration: none; transition: all 0.2s;}
+.ex-btn:hover {background: var(--navy); color: #ffffff;}
+.giant-footer {position: relative; padding: 40px 0 0; overflow: hidden; text-align: center;}
+.footer-copy-right {text-align: right; font-size: 10.5px; font-weight: 700; color: var(--navy); margin-bottom: 10px;}
+.footer-monumental {display: flex; align-items: baseline; justify-content: center; gap: 18px; font-size: 180px; font-weight: 900; letter-spacing: -8px; color: var(--navy); line-height: 0.82; user-select: none; margin-bottom: -14px;}
+.footer-monumental span.italic-part {font-style: italic;}
+.whatsapp-fab {position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; border-radius: 50%; background: #25d366; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 10px 24px rgba(37, 211, 102, 0.38); text-decoration: none; z-index: 999; transition: transform 0.2s;}
+.whatsapp-fab:hover {transform: scale(1.08);}
+@media (max-width: 860px) {.hero-grid, .why-bento-card, .balanced-section, .yoga-cards-grid, .pricing-cards-wrap {grid-template-columns: 1fr;} .exhibition-row {grid-template-columns: 1fr; gap: 10px;} .nav-menu {display: none;} .hero-heading {font-size: 40px;} .footer-monumental {font-size: 72px; letter-spacing: -3px;}}
+  </style>
+</head>
+<body>
+
+  <div class="page-shell">
+    <!-- HEADER IDÉNTICO AL DISEÑO DE REFERENCIA -->
+    <header class="topbar">
+      <a href="#" class="brand-mark">
+        <svg viewBox="0 0 54 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 4H46L41 12H18L15 18H36L31 26H11L5 36H0L12 4Z" fill="#14202e"/>
+          <path d="M24 28H42L37 36H19L24 28Z" fill="#4c6273"/>
+        </svg>
+        <span style="font-style: italic;">fitclass</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="#como-funciona">Cómo Funciona</a></li>
+        <li><a href="#marca-blanca">Marca Blanca</a></li>
+        <li><a href="#modulos">Módulos</a></li>
+        <li><a href="#precios">Planes</a></li>
+        <li><a href="#beneficios">Ventajas</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 10px;">
+        <a href="/login" class="btn-contact-top">
+          <i class="fa-regular fa-user"></i> Acceso Academia
+        </a>
+        <a href="/superadmin/login" class="btn-contact-top" style="background: #14202e; color: #fff; border-color: #14202e;">
+          <i class="fa-solid fa-bolt"></i> Super Admin
+        </a>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-wrap">
+      <!-- Sunburst decorativo sutil a la izquierda -->
+      <svg class="sunburst-faint-left" viewBox="0 0 100 100" fill="none">
+        <g stroke="#14202e" stroke-width="2.5">
+          <line x1="50" y1="2" x2="50" y2="28"/><line x1="50" y1="72" x2="50" y2="98"/><line x1="2" y1="50" x2="28" y2="50"/><line x1="72" y1="50" x2="98" y2="50"/>
+          <line x1="16" y1="16" x2="34" y2="34"/><line x1="66" y1="66" x2="84" y2="84"/><line x1="84" y1="16" x2="66" y2="34"/><line x1="34" y1="66" x2="16" y2="84"/>
+          <line x1="31" y1="6" x2="41" y2="30"/><line x1="59" y1="70" x2="69" y2="94"/><line x1="69" y1="6" x2="59" y2="30"/><line x1="41" y1="70" x2="31" y2="94"/>
+          <line x1="6" y1="31" x2="30" y2="41"/><line x1="70" y1="59" x2="94" y2="69"/><line x1="94" y1="31" x2="70" y2="41"/><line x1="30" y1="59" x2="6" y2="69"/>
+        </g>
+      </svg>
+
+      <div class="hero-grid">
+        <!-- Columna Izquierda -->
+        <div>
+          <h1 class="hero-heading">
+            El Camino<br>
+            Fitness Perfecto<br>
+            Con <em>fitclass</em>
+          </h1>
+
+          <p class="hero-copy">
+            Desbloquea todo el potencial de tu academia de baile, zumba o funcional con nuestro software SaaS en marca blanca: control de asistencias QR, cobros directos a tu Yape y portales para tus alumnas.
+          </p>
+
+          <div class="hero-cta-row">
+            <a href="#precios" class="btn-white-pill">Ver Membresías</a>
+
+            <div class="community-box">
+              <span class="community-label">Únete a la Comunidad</span>
+              <div class="community-icons">
+                <a href="https://wa.me/51999999999" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#precios"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#precios"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#precios"><i class="fa-brands fa-tiktok"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-stats">
+            <div>
+              <div class="stat-num"><em>500k+</em></div>
+              <div class="stat-caption">Asistencias y clases registradas con éxito</div>
+            </div>
+            <div>
+              <div class="stat-num"><em>10k+</em></div>
+              <div class="stat-caption">Alumnas activas logrando sus objetivos</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Retrato Glass + Widgets Flotantes + Nodos -->
+        <div class="hero-stage">
+          <div class="hero-ambient-glow"></div>
+
+          <!-- Roseta Sunburst Oscura Arriba a la Izquierda de la Modelo -->
+          <svg class="sunburst-dark" viewBox="0 0 100 100" fill="none">
+            <g stroke="#14202e" stroke-width="3.2" stroke-linecap="round">
+              <line x1="50" y1="4" x2="50" y2="28"/><line x1="50" y1="72" x2="50" y2="96"/><line x1="4" y1="50" x2="28" y2="50"/><line x1="72" y1="50" x2="96" y2="50"/>
+              <line x1="17" y1="17" x2="34" y2="34"/><line x1="66" y1="66" x2="83" y2="83"/><line x1="83" y1="17" x2="66" y2="34"/><line x1="34" y1="66" x2="17" y2="83"/>
+              <line x1="32" y1="7" x2="41" y2="30"/><line x1="59" y1="70" x2="68" y2="93"/><line x1="68" y1="7" x2="59" y2="30"/><line x1="41" y1="70" x2="32" y2="93"/>
+              <line x1="7" y1="32" x2="30" y2="41"/><line x1="70" y1="59" x2="93" y2="68"/><line x1="93" y1="32" x2="70" y2="41"/><line x1="30" y1="59" x2="7" y2="68"/>
+            </g>
+          </svg>
+
+          <div class="hero-portrait-frame">
+            <img class="main-model" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=85" alt="Atleta FitClass">
+            
+            <!-- Nodos conectados por línea punteada (igual a la imagen de referencia) -->
+            <svg class="node-overlay" viewBox="0 0 460 470" fill="none">
+              <path d="M235 230 L315 390 L385 255" stroke="rgba(255,255,255,0.65)" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <circle cx="235" cy="230" r="10" fill="rgba(255,255,255,0.25)"/>
+              <circle cx="235" cy="230" r="4.5" fill="#ffffff"/>
+              <circle cx="315" cy="390" r="10" fill="rgba(255,255,255,0.25)"/>
+              <circle cx="315" cy="390" r="4.5" fill="#ffffff"/>
+              <circle cx="385" cy="255" r="10" fill="rgba(255,255,255,0.25)"/>
+              <circle cx="385" cy="255" r="4.5" fill="#ffffff"/>
+            </svg>
+          </div>
+
+          <!-- Widget Flotante Derecha: Gráfico de Barras Semanal -->
+          <div class="float-chart-card">
+            <div class="chart-title">Crecimiento Semanal</div>
+            <div class="bars-wrap">
+              <div class="bar-col"><div class="bar-fill" style="height: 22px;"></div><span class="bar-day">L</span></div>
+              <div class="bar-col"><div class="bar-fill" style="height: 30px;"></div><span class="bar-day">M</span></div>
+              <div class="bar-col"><div class="bar-fill active" style="height: 44px;"></div><span class="bar-day">M</span></div>
+              <div class="bar-col"><div class="bar-fill" style="height: 26px;"></div><span class="bar-day">J</span></div>
+              <div class="bar-col"><div class="bar-fill active" style="height: 48px;"></div><span class="bar-day">V</span></div>
+              <div class="bar-col"><div class="bar-fill" style="height: 36px;"></div><span class="bar-day">S</span></div>
+              <div class="bar-col"><div class="bar-fill" style="height: 28px;"></div><span class="bar-day">D</span></div>
+            </div>
+            <div class="chart-foot">Asistencias Verificadas<br>En Tiempo Real</div>
+          </div>
+
+          <!-- Widget Flotante Izquierda Inferior: Alumnas Unidas -->
+          <div class="float-members-pill">
+            <div>
+              <div class="pill-meta-title">Alumnas Inscritas</div>
+              <div class="pill-avatars">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="A1">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=100&q=80" alt="A2">
+                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=100&q=80" alt="A3">
+              </div>
+            </div>
+            <div class="pill-meta-sub">+2k más</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: BENTO HIGHLIGHT (WHY FITCLASS WORKS) -->
+    <section id="como-funciona" class="why-bento-card">
+      <div class="why-visual-box">
+        <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=800&q=80" alt="Movimiento Fitness">
+      </div>
+
+      <div>
+        <span class="why-tag-pill">POR QUÉ FITCLASS FUNCIONA</span>
+        <p class="why-desc">
+          Vamos más allá de un simple registro: empoderamos a dueñas de academias y estudios fitness con tecnología propia para automatizar cobros por Yape, eliminar el papel y fidelizar a cada alumna.
+        </p>
+
+        <div class="why-mini-cards">
+          <div class="mini-glass-box">
+            <i class="fa-solid fa-qrcode"></i>
+            <span>Asistencia QR</span>
+          </div>
+          <div class="mini-glass-box highlight-heart">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <span>Retención 98%</span>
+            <div class="mini-corner-btn"><i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 7px;"></i></div>
+          </div>
+          <div class="mini-glass-box">
+            <i class="fa-solid fa-crown"></i>
+            <span>Marca Blanca</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: MARCA BLANCA (BALANCED SECTION) -->
+    <section id="marca-blanca" class="balanced-section">
+      <div>
+        <h2 class="sec-heading">
+          Personaliza tu<br>
+          academia con <em>marca blanca</em>
+        </h2>
+
+        <p class="sec-text">
+          Cada academia que adquiere su membresía de FitClass recibe su propio entorno personalizado: sube tu logotipo, tu imagen de portada, tu dirección, WhatsApp, tu propio QR de Yape y tus cuentas bancarias para cobrar sin intermediarios.
+        </p>
+
+        <div class="dual-option-cards">
+          <div class="option-card-dark">
+            <div class="option-card-head">
+              <span class="icon-circle"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+              <span>Tu Propio Logo</span>
+            </div>
+            <a href="#precios" class="option-pill-btn">
+              <span>Comenzar</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+
+          <div class="option-card-light">
+            <i class="fa-solid fa-building-columns"></i>
+            <span>Yape & Bancos Directos</span>
+          </div>
+        </div>
+
+        <div class="signature-block">
+          <div class="signature-script">FitClass Cloud</div>
+          <div>Arquitectura Multi-Academia Oficial</div>
+        </div>
+      </div>
+
+      <div class="balanced-visual-wrap">
+        <svg class="sunburst-mid" viewBox="0 0 100 100" fill="none">
+          <g stroke="#14202e" stroke-width="3.2" stroke-linecap="round">
+            <line x1="50" y1="4" x2="50" y2="28"/><line x1="50" y1="72" x2="50" y2="96"/><line x1="4" y1="50" x2="28" y2="50"/><line x1="72" y1="50" x2="96" y2="50"/>
+            <line x1="17" y1="17" x2="34" y2="34"/><line x1="66" y1="66" x2="83" y2="83"/><line x1="83" y1="17" x2="66" y2="34"/><line x1="34" y1="66" x2="17" y2="83"/>
+            <line x1="32" y1="7" x2="41" y2="30"/><line x1="59" y1="70" x2="68" y2="93"/><line x1="68" y1="7" x2="59" y2="30"/><line x1="41" y1="70" x2="32" y2="93"/>
+            <line x1="7" y1="32" x2="30" y2="41"/><line x1="70" y1="59" x2="93" y2="68"/><line x1="93" y1="32" x2="70" y2="41"/><line x1="30" y1="59" x2="7" y2="68"/>
+          </g>
+        </svg>
+
+        <div class="balanced-photo-box">
+          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=800&q=80" alt="Portal Personalizado de Academia">
+        </div>
+
+        <div class="calories-float-widget">
+          <div class="cal-top">
+            <span>Cobros Directos</span>
+            <span class="cal-val">100% Tuyos</span>
+          </div>
+          <div class="cal-bar-track">
+            <div class="cal-bar-fill"></div>
+          </div>
+          <div class="cal-sub">Cero comisiones por alumna inscrita</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- SECCIÓN 4: 6 TARJETAS ESTILO "YOGA" DE LA REFERENCIA -->
+  <section id="modulos" class="yoga-Showcase-wrapper">
+    <div class="page-shell">
+      <div class="showcase-head-row">
+        <h2 class="sec-heading" style="margin-bottom: 0;">
+          Encuentra El Estilo<br>
+          Perfecto De Tu <em>academia</em>
+        </h2>
+        <p class="showcase-sub">
+          Explora todos los módulos incluidos en tu cuenta de FitClass, diseñados para adaptarse a escuelas de baile, zumba, pilates, funcional y gimnasios.
+        </p>
+      </div>
+
+      <div class="yoga-cards-grid">
+        <!-- Card 1 -->
+        <div class="yoga-card">
+          <div class="yoga-bg-word">ZUMBA</div>
+          <img src="https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?auto=format&fit=crop&w=600&q=80" alt="Zumba & Baile">
+          <a href="#precios" class="yoga-card-btn">Baile & Coreografías <i class="fa-solid fa-angle-right"></i></a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="yoga-card">
+          <div class="yoga-bg-word">FIT</div>
+          <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80" alt="Funcional & HIIT">
+          <a href="#precios" class="yoga-card-btn">Funcional & Circuitos <i class="fa-solid fa-angle-right"></i></a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="yoga-card">
+          <div class="yoga-bg-word">QR PRO</div>
+          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=600&q=80" alt="Asistencias QR">
+          <a href="#precios" class="yoga-card-btn">Control de Asistencias <i class="fa-solid fa-angle-right"></i></a>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="yoga-card">
+          <div class="yoga-bg-word">PAGOS</div>
+          <img src="https://images.unsplash.com/photo-1554415707-9e49016a3070?auto=format&fit=crop&w=600&q=80" alt="Pagos y Membresías">
+          <a href="#precios" class="yoga-card-btn">Validación Yape & Bancos <i class="fa-solid fa-angle-right"></i></a>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="yoga-card">
+          <div class="yoga-bg-word">PORTAL</div>
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Portal Alumnas">
+          <a href="#precios" class="yoga-card-btn">Acceso Profesor & Alumna <i class="fa-solid fa-angle-right"></i></a>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="yoga-card">
+          <div class="yoga-bg-word">RULETA</div>
+          <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=600&q=80" alt="Sorteos">
+          <a href="#precios" class="yoga-card-btn">Sorteos & Premios <i class="fa-solid fa-angle-right"></i></a>
+        </div>
+      </div>
+
+      <div class="center-btn-row">
+        <a href="#precios" class="btn-dark-pill">Ver Todos Los Beneficios</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 5: MEMBRESÍAS FITCLASS ($30 / 6 MESES Y $50 / 1 AÑO) -->
+  <section id="precios" class="pricing-showcase">
+    <div class="page-shell">
+      <div style="text-align: center; max-width: 520px; margin: 0 auto;">
+        <h2 class="sec-heading">
+          Membresías Oficiales<br>
+          Para Tu <em>academia</em>
+        </h2>
+        <p style="font-size: 12.5px; color: var(--text-muted);">
+          Activa tu cuenta hoy mismo con todo el sistema de Marca Blanca incluido.
+        </p>
+      </div>
+
+      <div class="pricing-cards-wrap">
+        <!-- Plan 6 Meses: $30 -->
+        <div class="saas-price-card">
+          <div>
+            <div class="tier-name">Membresía 6 Meses</div>
+            <div class="tier-price">$30 <span>USD / 6 meses</span></div>
+            <div class="tier-Note">Pago único semestral (Equivale a solo $5 USD al mes)</div>
+
+            <ul class="tier-list">
+              <li><i class="fa-solid fa-circle-check"></i> Sistema completo por 6 meses (180 días)</li>
+              <li><i class="fa-solid fa-circle-check"></i> Marca Blanca: Sube tu Logo y Portada</li>
+              <li><i class="fa-solid fa-circle-check"></i> Configura tu Yape, Plin y Cuentas Bancarias</li>
+              <li><i class="fa-solid fa-circle-check"></i> Link exclusivo para tus Alumnas y Profesores</li>
+              <li><i class="fa-solid fa-circle-check"></i> Control de asistencias y calendario de clases</li>
+              <li><i class="fa-solid fa-circle-check"></i> Alumnas ilimitadas sin comisiones</li>
+            </ul>
+          </div>
+
+          <a href="https://wa.me/51999999999?text=Hola,%20deseo%20adquirir%20la%20Membresía%20de%206%20Meses%20($30%20USD)%20de%20FitClass" target="_blank" class="btn-dark-pill" style="width: 100%; padding: 14px 0;">
+            Adquirir Plan 6 Meses ($30)
+          </a>
+        </div>
+
+        <!-- Plan 1 Año: $50 -->
+        <div class="saas-price-card dark-tier">
+          <span class="tier-badge">★ Mejor Valor — Ahorra 30%</span>
+          <div>
+            <div class="tier-name" style="color: #93c5fd;">Membresía Anual (1 Año)</div>
+            <div class="tier-price">$50 <span>USD / 1 año</span></div>
+            <div class="tier-Note" style="color: #cbd5e1;">Pago único por 12 meses (Solo $4.16 USD al mes)</div>
+
+            <ul class="tier-list">
+              <li><i class="fa-solid fa-circle-check"></i> <strong>Acceso total por 1 Año completo (365 días)</strong></li>
+              <li><i class="fa-solid fa-circle-check"></i> <strong>Marca Blanca 100% con tu identidad visual</strong></li>
+              <li><i class="fa-solid fa-circle-check"></i> Tus propios números de Yape y Bancos</li>
+              <li><i class="fa-solid fa-circle-check"></i> Portales de ingreso para Profesor y Alumna</li>
+              <li><i class="fa-solid fa-circle-check"></i> Módulo de Ruleta de Sorteos interactiva</li>
+              <li><i class="fa-solid fa-circle-check"></i> Soporte VIP prioritario por WhatsApp</li>
+            </ul>
+          </div>
+
+          <a href="https://wa.me/51999999999?text=Hola,%20deseo%20adquirir%20la%20Membresía%20Anual%20de%201%20Año%20($50%20USD)%20de%20FitClass" target="_blank" class="btn-white-pill" style="width: 100%; padding: 14px 0;">
+            Adquirir Plan 1 Año ($50)
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 6: EXHIBITION TICKER + LISTA NUMERADA (01 - 04) IDÉNTICA A LA REFERENCIA -->
+  <section id="beneficios" class="page-shell">
+    <div class="exhibition-ticker">
+      <span class="exhibition-word">fitclass</span>
+      <svg width="42" height="42" viewBox="0 0 100 100" fill="none">
+        <g stroke="#14202e" stroke-width="3">
+          <line x1="50" y1="4" x2="50" y2="28"/><line x1="50" y1="72" x2="50" y2="96"/><line x1="4" y1="50" x2="28" y2="50"/><line x1="72" y1="50" x2="96" y2="50"/>
+          <line x1="17" y1="17" x2="34" y2="34"/><line x1="66" y1="66" x2="83" y2="83"/><line x1="83" y1="17" x2="66" y2="34"/><line x1="34" y1="66" x2="17" y2="83"/>
+        </g>
+      </svg>
+      <span class="exhibition-word">membresías</span>
+      <svg width="42" height="42" viewBox="0 0 100 100" fill="none">
+        <g stroke="#14202e" stroke-width="3">
+          <line x1="50" y1="4" x2="50" y2="28"/><line x1="50" y1="72" x2="50" y2="96"/><line x1="4" y1="50" x2="28" y2="50"/><line x1="72" y1="50" x2="96" y2="50"/>
+          <line x1="17" y1="17" x2="34" y2="34"/><line x1="66" y1="66" x2="83" y2="83"/><line x1="83" y1="17" x2="66" y2="34"/><line x1="34" y1="66" x2="17" y2="83"/>
+        </g>
+      </svg>
+      <span class="exhibition-word">marca blanca</span>
+    </div>
+
+    <div class="exhibition-list">
+      <div class="exhibition-row">
+        <span class="ex-num">01</span>
+        <div class="ex-title">plan semestral<br>6 meses — $30</div>
+        <div class="ex-meta">acceso completo 180 días<br>(marca blanca + asistencias qr)</div>
+        <a href="https://wa.me/51999999999?text=Deseo%20reservar%20el%20Plan%206%20Meses%20a%20$30" target="_blank" class="ex-btn">Activar Ahora</a>
+      </div>
+
+      <div class="exhibition-row">
+        <span class="ex-num">02</span>
+        <div class="ex-title">plan anual pro<br>1 año — $50</div>
+        <div class="ex-meta">acceso total 365 días<br>(ahorra 30% + soporte vip)</div>
+        <a href="https://wa.me/51999999999?text=Deseo%20reservar%20el%20Plan%20Anual%20a%20$50" target="_blank" class="ex-btn">Activar Ahora</a>
+      </div>
+
+      <div class="exhibition-row">
+        <span class="ex-num">03</span>
+        <div class="ex-title">portales propios<br>profe y alumna</div>
+        <div class="ex-meta">enlace único /a/tu-academia<br>(con tu foto de portada y logo)</div>
+        <a href="/login" class="ex-btn">Ver Portal</a>
+      </div>
+
+      <div class="exhibition-row">
+        <span class="ex-num">04</span>
+        <div class="ex-title">cobros directos<br>yape & bancos</div>
+        <div class="ex-meta">0% comisiones por alumna<br>(el dinero va directo a tu cuenta)</div>
+        <a href="#precios" class="ex-btn">Empezar Hoy</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 7: FOOTER MONUMENTAL IDÉNTICO A LA IMAGEN -->
+  <footer class="giant-footer">
+    <div class="page-shell">
+      <div class="footer-copy-right">2026 all right deserves fitclass.com</div>
+      <div class="footer-monumental">
+        <svg viewBox="0 0 110 85" width="135" height="105" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 5H95L85 22H36L30 35H75L65 52H22L10 78H0L24 5Z" fill="#14202e"/>
+          <path d="M48 58H86L76 78H38L48 58Z" fill="#14202e"/>
+        </svg>
+        <span class="italic-part">fitclass</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOTÓN WHATSAPP FLOTANTE -->
+  <a href="https://wa.me/51999999999?text=Hola,%20quiero%20adquirir%20FitClass%20para%20mi%20academia" target="_blank" class="whatsapp-fab" title="Hablar por WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+</body>
+</html>
