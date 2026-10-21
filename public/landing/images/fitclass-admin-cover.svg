@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090D16" />
+      <stop offset="50%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E1B4B" />
+    </linearGradient>
+    <linearGradient id="cyanBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4" />
+      <stop offset="100%" stop-color="#3B82F6" />
+    </linearGradient>
+    <linearGradient id="purplePink" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#EC4899" />
+    </linearGradient>
+    <filter id="cardGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="600" height="800" fill="url(#bgDark)" />
+
+  <!-- Ambient Light Circles -->
+  <circle cx="150" cy="200" r="180" fill="#3B82F6" opacity="0.15" filter="url(#cardGlow)" />
+  <circle cx="450" cy="550" r="160" fill="#8B5CF6" opacity="0.18" filter="url(#cardGlow)" />
+  <circle cx="300" cy="700" r="120" fill="#06B6D4" opacity="0.12" filter="url(#cardGlow)" />
+
+  <!-- Grid overlay -->
+  <g stroke="rgba(255,255,255,0.03)" stroke-width="1">
+    <line x1="50" y1="0" x2="50" y2="800" />
+    <line x1="150" y1="0" x2="150" y2="800" />
+    <line x1="250" y1="0" x2="250" y2="800" />
+    <line x1="350" y1="0" x2="350" y2="800" />
+    <line x1="450" y1="0" x2="450" y2="800" />
+    <line x1="550" y1="0" x2="550" y2="800" />
+    <line x1="0" y1="100" x2="600" y2="100" />
+    <line x1="0" y1="200" x2="600" y2="200" />
+    <line x1="0" y1="300" x2="600" y2="300" />
+    <line x1="0" y1="400" x2="600" y2="400" />
+    <line x1="0" y1="500" x2="600" y2="500" />
+    <line x1="0" y1="600" x2="600" y2="600" />
+    <line x1="0" y1="700" x2="600" y2="700" />
+  </g>
+
+  <!-- Central Floating Dashboard Card (Perspective) -->
+  <g transform="translate(60, 140)">
+    <!-- Main Card Body -->
+    <rect x="0" y="0" width="480" height="340" rx="20" fill="rgba(15, 23, 42, 0.85)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="2" filter="url(#cardGlow)" />
+    
+    <!-- Header of Card -->
+    <rect x="0" y="0" width="480" height="50" rx="20" fill="rgba(30, 41, 59, 0.7)" />
+    <circle cx="28" cy="25" r="6" fill="#EF4444" />
+    <circle cx="48" cy="25" r="6" fill="#F59E0B" />
+    <circle cx="68" cy="25" r="6" fill="#10B981" />
+    <text x="100" y="30" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#94A3B8">FITCLASS MULTI-TENANT ENGINE &bull; ONLINE</text>
+
+    <!-- Stat 1 -->
+    <rect x="25" y="70" width="135" height="85" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+    <text x="40" y="94" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#64748B">ACADEMIAS ACTIVAS</text>
+    <text x="40" y="132" font-family="'Inter', sans-serif" font-size="28" font-weight="900" fill="#38BDF8">24+</text>
+
+    <!-- Stat 2 -->
+    <rect x="172" y="70" width="135" height="85" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+    <text x="187" y="94" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#64748B">MEMBRESÍAS SAAS</text>
+    <text x="187" y="132" font-family="'Inter', sans-serif" font-size="28" font-weight="900" fill="#10B981">$30 / $50</text>
+
+    <!-- Stat 3 -->
+    <rect x="320" y="70" width="135" height="85" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+    <text x="335" y="94" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#64748B">MARCA BLANCA</text>
+    <text x="335" y="132" font-family="'Inter', sans-serif" font-size="24" font-weight="900" fill="#C084FC">100%</text>
+
+    <!-- Chart Line Graphic -->
+    <g transform="translate(30, 180)">
+      <rect x="0" y="0" width="420" height="130" rx="12" fill="rgba(0,0,0,0.3)" />
+      <!-- Wave path -->
+      <path d="M 20 100 Q 80 40 140 70 T 260 30 T 380 15" fill="none" stroke="url(#cyanBlue)" stroke-width="4" stroke-linecap="round" />
+      <path d="M 20 100 Q 80 40 140 70 T 260 30 T 380 15 L 380 120 L 20 120 Z" fill="url(#cyanBlue)" opacity="0.1" />
+      <!-- Dots on graph -->
+      <circle cx="140" cy="70" r="5" fill="#38BDF8" stroke="#fff" stroke-width="2" />
+      <circle cx="260" cy="30" r="5" fill="#38BDF8" stroke="#fff" stroke-width="2" />
+      <circle cx="380" cy="15" r="6" fill="#10B981" stroke="#fff" stroke-width="2" />
+    </g>
+  </g>
+
+  <!-- Floating Badge: Super Admin Shield -->
+  <g transform="translate(180, 520)">
+    <rect x="0" y="0" width="240" height="64" rx="32" fill="rgba(15, 23, 42, 0.9)" stroke="url(#purplePink)" stroke-width="2" />
+    <circle cx="36" cy="32" r="18" fill="url(#purplePink)" />
+    <text x="30" y="38" font-family="'Inter', sans-serif" font-size="16" fill="#fff">👑</text>
+    <text x="68" y="28" font-family="'Inter', sans-serif" font-size="12" font-weight="800" fill="#fff">ACCESO ROOT SUPER ADMIN</text>
+    <text x="68" y="46" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#38BDF8">Control Total FitClass SaaS</text>
+  </g>
+
+  <!-- Bottom Brand Text -->
+  <g transform="translate(80, 680)">
+    <text font-family="'Inter', 'Montserrat', sans-serif" font-size="28" font-weight="900" fill="#FFFFFF">
+      FIT<tspan fill="#38BDF8">CLASS</tspan> CLOUD
+    </text>
+    <text y="28" font-family="'Inter', sans-serif" font-size="13" font-weight="500" fill="#94A3B8">
+      Infraestructura multi-academia con marca blanca automática
+    </text>
+  </g>
+</svg>
