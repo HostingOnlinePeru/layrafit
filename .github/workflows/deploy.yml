@@ -16,47 +16,55 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT || 22 }}
           script: |
-            echo "=== INICIANDO DESPLIEGUE ==="
+            echo "=== 1. Buscar directorio del proyecto ==="
+            ARTISAN_PATH=$(find /home /var /srv /www /opt -name "artisan" 2>/dev/null | head -n 1)
+            if [ -n "$ARTISAN_PATH" ]; then
+              PROJECT_DIR=$(dirname "$ARTISAN_PATH")
+            else
+              PROJECT_DIR="/home/deploy"
+            fi
+            echo "PROJECT_DIR=$PROJECT_DIR"
+
+            # Ejecutar deploy script original si existe
             if [ -f /home/deploy/deploy-layrafit.sh ]; then
-              echo "--- Contenido de deploy-layrafit.sh ---"
-              cat /home/deploy/deploy-layrafit.sh
-              echo "--- Ejecutando deploy-layrafit.sh ---"
+              echo "=== Ejecutando deploy-layrafit.sh ==="
               bash /home/deploy/deploy-layrafit.sh || true
             fi
 
-            echo "--- Buscando directorio de instalacion ---"
-            DEPLOY_DIR=""
-            for dir in /var/www/layrafit /var/www/fitbeat /home/deploy/layrafit /var/www/html /home/deploy/fitbeat; do
-              if [ -d "$dir/.git" ]; then
-                DEPLOY_DIR="$dir"
-                break
-              fi
-            done
-
-            if [ -z "$DEPLOY_DIR" ] && [ -f /home/deploy/deploy-layrafit.sh ]; then
-              DEPLOY_DIR=$(grep -E 'cd\s+/' /home/deploy/deploy-layrafit.sh | head -n 1 | awk '{print $2}')
-            fi
-
-            echo "Directorio detectado: $DEPLOY_DIR"
-
-            if [ -n "$DEPLOY_DIR" ] && [ -d "$DEPLOY_DIR" ]; then
-              cd "$DEPLOY_DIR"
-              echo "Directorio actual: $(pwd)"
+            # Forzar git sync y limpieza en PROJECT_DIR
+            if [ -d "$PROJECT_DIR/.git" ]; then
+              cd "$PROJECT_DIR"
+              echo "En repositorio: $(pwd)"
               git fetch origin main
               git checkout -f main
               git reset --hard origin/main
-              git log -1 --oneline
               
-              echo "--- Limpiando cache de Laravel ---"
+              # Limpieza total de caches de Laravel
               php artisan view:clear || true
               php artisan optimize:clear || true
               php artisan cache:clear || true
               php artisan config:clear || true
               php artisan route:clear || true
 
-              echo "DEPLOYED_AT=$(date -u '+%Y-%m-%d %H:%M:%S UTC') COMMIT=$(git rev-parse --short HEAD)" > public/deploy_status.txt
-              
-              # Intentar recargar php-fpm si existe
-              sudo systemctl reload php8.3-fpm 2>/dev/null || sudo systemctl reload php-fpm 2>/dev/null || true
+              # Escribir informe detallado en public/debug.txt
+              {
+                echo "=== DEPLOY REPORT ==="
+                echo "DATE: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+                echo "PROJECT_DIR: $PROJECT_DIR"
+                echo "GIT_COMMIT: $(git rev-parse HEAD)"
+                echo "GIT_LOG: $(git log -1 --oneline)"
+                echo "=== SCRIPT /home/deploy/deploy-layrafit.sh ==="
+                if [ -f /home/deploy/deploy-layrafit.sh ]; then
+                  cat /home/deploy/deploy-layrafit.sh
+                else
+                  echo "No existe /home/deploy/deploy-layrafit.sh"
+                fi
+                echo "=== VIEW FILE CHECK ==="
+                head -n 25 resources/views/auth/login.blade.php
+              } > public/debug.txt
+              chmod 644 public/debug.txt || true
+
+              # Recargar php-fpm si esta disponible
+              sudo systemctl reload php8.3-fpm 2>/dev/null || sudo systemctl reload php-fpm 2>/dev/null || sudo service php8.3-fpm reload 2>/dev/null || true
             fi
-            echo "=== DESPLIEGUE FINALIZADO ==="
+            echo "=== FIN ==="
