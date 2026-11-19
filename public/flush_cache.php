@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\News;
+use App\Models\PaymentMethod;
+use App\Models\Tenant;
 use App\Models\User;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\DB;
