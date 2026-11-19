@@ -50,29 +50,83 @@
     @endif
 </div>
 
-<!-- Novedades Recientes -->
+<!-- Novedades y Avisos (Slider) -->
 <div style="margin-bottom: 28px;">
     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
         <h3 style="font-size: 17px; font-weight: 800; display: flex; align-items: center; gap: 8px;">
             <i class="fa-solid fa-bullhorn" style="color: var(--primary);"></i> Novedades y Avisos
         </h3>
+        <span style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Desliza para ver más</span>
     </div>
 
-    <div style="display: flex; flex-direction: column; gap: 12px;">
-        @forelse($latestNews as $news)
-            <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 16px;">
-                <div style="font-size: 11px; color: var(--primary); font-weight: 700; margin-bottom: 4px;">
-                    {{ $news->published_at->format('d/m/Y') }}
+    @if($latestNews->isNotEmpty())
+        <div class="news-slider-container" id="newsSlider">
+            <div class="news-slider-wrapper" id="newsSliderWrapper">
+                @foreach($latestNews as $index => $news)
+                    <div class="news-slide" data-index="{{ $index }}">
+                        @if($news->image)
+                            <img src="{{ $news->image }}" alt="{{ $news->title }}" class="news-slide-bg" loading="lazy">
+                        @else
+                            <div class="news-slide-bg" style="background: radial-gradient(circle at center, #2e100e 0%, #160b0a 100%);"></div>
+                        @endif
+                        <div class="news-slide-overlay"></div>
+                        <div class="news-slide-content">
+                            @php
+                                $tagClass = 'tag-promo';
+                                $tagIcon = 'fa-tag';
+                                $tagText = 'Aviso';
+                                $titleLower = mb_strtolower($news->title);
+                                if (str_contains($titleLower, 'sorteo')) {
+                                    $tagClass = 'tag-sorteo';
+                                    $tagIcon = 'fa-gift';
+                                    $tagText = 'Sorteo 23 Dic';
+                                } elseif (str_contains($titleLower, 'cena')) {
+                                    $tagClass = 'tag-cena';
+                                    $tagIcon = 'fa-champagne-glasses';
+                                    $tagText = 'Evento 23 Dic';
+                                } elseif (str_contains($titleLower, 'polo') || str_contains($titleLower, 'descuento') || str_contains($titleLower, 'dcto')) {
+                                    $tagClass = 'tag-promo';
+                                    $tagIcon = 'fa-percent';
+                                    $tagText = '15% Descuento';
+                                }
+                            @endphp
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span class="news-slide-tag {{ $tagClass }}">
+                                    <i class="fa-solid {{ $tagIcon }}"></i> {{ $tagText }}
+                                </span>
+                                <span style="font-size: 11px; color: rgba(255,255,255,0.7); font-weight: 600;">
+                                    {{ $news->published_at ? $news->published_at->format('d/m/Y') : '' }}
+                                </span>
+                            </div>
+                            <h4 class="news-slide-title">{{ $news->title }}</h4>
+                            <p class="news-slide-desc">{{ $news->description }}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <!-- Flechas de navegación -->
+            @if($latestNews->count() > 1)
+                <button type="button" class="news-slider-arrow news-slider-prev" id="newsPrevBtn" aria-label="Anterior">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button type="button" class="news-slider-arrow news-slider-next" id="newsNextBtn" aria-label="Siguiente">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <!-- Indicadores Dots -->
+                <div class="news-slider-dots" id="newsSliderDots">
+                    @foreach($latestNews as $index => $news)
+                        <button type="button" class="news-slider-dot {{ $index === 0 ? 'active' : '' }}" data-slide="{{ $index }}" aria-label="Slide {{ $index + 1 }}"></button>
+                    @endforeach
                 </div>
-                <h4 style="font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 6px;">{{ $news->title }}</h4>
-                <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">{{ $news->description }}</p>
-            </div>
-        @empty
-            <div style="text-align: center; color: var(--text-muted); padding: 20px; font-size: 13px;">
-                No hay novedades recientes publicadas.
-            </div>
-        @endforelse
-    </div>
+            @endif
+        </div>
+    @else
+        <div style="text-align: center; color: var(--text-muted); padding: 20px; font-size: 13px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px;">
+            No hay novedades recientes publicadas.
+        </div>
+    @endif
 </div>
 
 <!-- Accesos Rápidos -->
@@ -90,3 +144,98 @@
     </a>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const wrapper = document.getElementById('newsSliderWrapper');
+    const container = document.getElementById('newsSlider');
+    if (!wrapper || !container) return;
+
+    const slides = wrapper.querySelectorAll('.news-slide');
+    const dots = document.querySelectorAll('.news-slider-dot');
+    const prevBtn = document.getElementById('newsPrevBtn');
+    const nextBtn = document.getElementById('newsNextBtn');
+    const totalSlides = slides.length;
+    if (totalSlides <= 1) return;
+
+    let currentIndex = 0;
+    let autoPlayTimer = null;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function goToSlide(index) {
+        if (index < 0) {
+            currentIndex = totalSlides - 1;
+        } else if (index >= totalSlides) {
+            currentIndex = 0;
+        } else {
+            currentIndex = index;
+        }
+        wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+        dots.forEach((dot, idx) => {
+            if (idx === currentIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    function nextSlide() {
+        goToSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+        goToSlide(currentIndex - 1);
+    }
+
+    function startAutoPlay() {
+        stopAutoPlay();
+        autoPlayTimer = setInterval(nextSlide, 5000);
+    }
+
+    function stopAutoPlay() {
+        if (autoPlayTimer) {
+            clearInterval(autoPlayTimer);
+            autoPlayTimer = null;
+        }
+    }
+
+    if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); startAutoPlay(); });
+    if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); startAutoPlay(); });
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const idx = parseInt(dot.getAttribute('data-slide'), 10);
+            goToSlide(idx);
+            startAutoPlay();
+        });
+    });
+
+    // Touch swipe support for mobile
+    container.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAutoPlay();
+    }, { passive: true });
+
+    container.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 40) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+        startAutoPlay();
+    }, { passive: true });
+
+    container.addEventListener('mouseenter', stopAutoPlay);
+    container.addEventListener('mouseleave', startAutoPlay);
+
+    startAutoPlay();
+});
+</script>
+@endpush

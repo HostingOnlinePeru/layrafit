@@ -231,13 +231,32 @@ class DatabaseSeeder extends Seeder
             'is_active' => true,
         ]);
 
-        // 9. Novedad de Ejemplo
+        // 9. Novedades y Avisos (Slider)
         News::create([
-            'title' => '¡Nuevas clases de Zumba® y Strong Nation!',
-            'description' => 'Consulta el nuevo horario semanal de tu sede y reserva tus días de entrenamiento.',
+            'title' => 'Sorteo de Navidad: Zapatillas Nike Running Dama',
+            'description' => '¡Gana 1 par de zapatillas Nike para dama Running! Gran sorteo navideño este 23 de Diciembre entre todas las alumnas.',
+            'image' => '/images/news/banner-sorteo-nike.jpg',
             'location_id' => null,
             'is_published' => true,
             'published_at' => now(),
+        ]);
+
+        News::create([
+            'title' => 'Cena Navideña Layra Fit — 23 de Dic',
+            'description' => 'Celebración y cena navideña este 23 de Diciembre. ¡Ven a compartir y brindar con toda la familia Bail Fitness!',
+            'image' => '/images/news/banner-cena-navidad.jpg',
+            'location_id' => null,
+            'is_published' => true,
+            'published_at' => now()->subMinutes(5),
+        ]);
+
+        News::create([
+            'title' => 'Nuevos Polos Layra Fit — 15% Descuento',
+            'description' => 'Compra los nuevos modelos exclusivos de Polos Layra Fit a un súper descuento del 15% por temporada navideña.',
+            'image' => '/images/news/banner-polos-layra.jpg',
+            'location_id' => null,
+            'is_published' => true,
+            'published_at' => now()->subMinutes(10),
         ]);
     }
 }

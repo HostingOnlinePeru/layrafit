@@ -99,8 +99,40 @@ try {
         }
     }
     $result['db_repaired_records'] = $repaired;
+
+    // Sincronizar las 3 novedades para el slider
+    $sliderNews = [
+        [
+            'title' => 'Sorteo de Navidad: Zapatillas Nike Running Dama',
+            'description' => '¡Gana 1 par de zapatillas Nike para dama Running! Gran sorteo navideño este 23 de Diciembre entre todas las alumnas.',
+            'image' => '/images/news/banner-sorteo-nike.jpg',
+        ],
+        [
+            'title' => 'Cena Navideña Layra Fit — 23 de Dic',
+            'description' => 'Celebración y cena navideña este 23 de Diciembre. ¡Ven a compartir y brindar con toda la familia Bail Fitness!',
+            'image' => '/images/news/banner-cena-navidad.jpg',
+        ],
+        [
+            'title' => 'Nuevos Polos Layra Fit — 15% Descuento',
+            'description' => 'Compra los nuevos modelos exclusivos de Polos Layra Fit a un súper descuento del 15% por temporada navideña.',
+            'image' => '/images/news/banner-polos-layra.jpg',
+        ],
+    ];
+
+    foreach ($sliderNews as $sn) {
+        News::updateOrCreate(
+            ['title' => $sn['title']],
+            [
+                'description' => $sn['description'],
+                'image' => $sn['image'],
+                'is_published' => true,
+                'published_at' => now(),
+            ]
+        );
+    }
+
     $result['students_sample'] = User::where('role', 'student')->get(['id', 'name', 'last_name', 'phone', 'email']);
-    $result['news_sample'] = News::all(['id', 'title', 'description']);
+    $result['news_sample'] = News::where('is_published', true)->latest()->get(['id', 'title', 'description', 'image']);
 } catch (Throwable $e) {
     $result['db_repair_error'] = $e->getMessage();
 }

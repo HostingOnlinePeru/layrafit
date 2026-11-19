@@ -34,8 +34,8 @@ class DashboardController extends Controller
                 $q->whereNull('location_id')
                     ->orWhere('location_id', $student->location_id);
             })
-            ->latest()
-            ->take(3)
+            ->latest('published_at')
+            ->take(6)
             ->get();
 
         // Clases / Rutinas disponibles
