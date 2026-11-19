@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\News;
+use App\Models\User;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\DB;
 
@@ -97,6 +99,8 @@ try {
         }
     }
     $result['db_repaired_records'] = $repaired;
+    $result['students_sample'] = User::where('role', 'student')->get(['id', 'name', 'last_name', 'phone', 'email']);
+    $result['news_sample'] = News::all(['id', 'title', 'description']);
 } catch (Throwable $e) {
     $result['db_repair_error'] = $e->getMessage();
 }
