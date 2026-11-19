@@ -15,4 +15,48 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT || 22 }}
-          script: /home/deploy/deploy-layrafit.sh
+          script: |
+            echo "=== INICIANDO DESPLIEGUE ==="
+            if [ -f /home/deploy/deploy-layrafit.sh ]; then
+              echo "--- Contenido de deploy-layrafit.sh ---"
+              cat /home/deploy/deploy-layrafit.sh
+              echo "--- Ejecutando deploy-layrafit.sh ---"
+              bash /home/deploy/deploy-layrafit.sh || true
+            fi
+
+            echo "--- Buscando directorio de instalacion ---"
+            DEPLOY_DIR=""
+            for dir in /var/www/layrafit /var/www/fitbeat /home/deploy/layrafit /var/www/html /home/deploy/fitbeat; do
+              if [ -d "$dir/.git" ]; then
+                DEPLOY_DIR="$dir"
+                break
+              fi
+            done
+
+            if [ -z "$DEPLOY_DIR" ] && [ -f /home/deploy/deploy-layrafit.sh ]; then
+              DEPLOY_DIR=$(grep -E 'cd\s+/' /home/deploy/deploy-layrafit.sh | head -n 1 | awk '{print $2}')
+            fi
+
+            echo "Directorio detectado: $DEPLOY_DIR"
+
+            if [ -n "$DEPLOY_DIR" ] && [ -d "$DEPLOY_DIR" ]; then
+              cd "$DEPLOY_DIR"
+              echo "Directorio actual: $(pwd)"
+              git fetch origin main
+              git checkout -f main
+              git reset --hard origin/main
+              git log -1 --oneline
+              
+              echo "--- Limpiando cache de Laravel ---"
+              php artisan view:clear || true
+              php artisan optimize:clear || true
+              php artisan cache:clear || true
+              php artisan config:clear || true
+              php artisan route:clear || true
+
+              echo "DEPLOYED_AT=$(date -u '+%Y-%m-%d %H:%M:%S UTC') COMMIT=$(git rev-parse --short HEAD)" > public/deploy_status.txt
+              
+              # Intentar recargar php-fpm si existe
+              sudo systemctl reload php8.3-fpm 2>/dev/null || sudo systemctl reload php-fpm 2>/dev/null || true
+            fi
+            echo "=== DESPLIEGUE FINALIZADO ==="
