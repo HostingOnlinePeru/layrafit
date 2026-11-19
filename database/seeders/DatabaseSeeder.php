@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
             'name' => 'Local Centro',
             'address' => 'Av. Principal 123, Centro',
             'phone' => '987654321',
-            'schedule' => 'Lun - SÃ¡b: 7:00 AM - 9:00 PM',
+            'schedule' => 'Lun - Sáb: 7:00 AM - 9:00 PM',
             'is_active' => true,
-            'extra_info' => 'Sede principal con amplio salÃ³n de baile acondicionado.',
+            'extra_info' => 'Sede principal con amplio salón de baile acondicionado.',
         ]);
 
         $localNorte = Location::create([
@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Local Sur',
             'address' => 'Av. Los Olivos 789, Sur',
             'phone' => '987654323',
-            'schedule' => 'Lun - SÃ¡b: 6:30 AM - 8:30 PM',
+            'schedule' => 'Lun - Sáb: 6:30 AM - 8:30 PM',
             'is_active' => true,
             'extra_info' => 'Sede sur climatizada y moderna.',
         ]);
@@ -60,9 +60,9 @@ class DatabaseSeeder extends Seeder
 
         // 3. Tipos de Clase / Disciplinas
         $zumbaType = ClassType::create([
-            'name' => 'ZumbaÂ®',
+            'name' => 'Zumba®',
             'slug' => 'zumba',
-            'description' => 'Programa de acondicionamiento fÃ­sico que combina ritmos latinos e internacionales con pasos de baile fÃ¡ciles de seguir.',
+            'description' => 'Programa de acondicionamiento físico que combina ritmos latinos e internacionales con pasos de baile fáciles de seguir.',
             'color_code' => '#ff007f',
             'is_active' => true,
         ]);
@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
         $strongType = ClassType::create([
             'name' => 'Strong Nation',
             'slug' => 'strong-nation',
-            'description' => 'Entrenamiento de alta intensidad con mÃºsica sincronizada que combina el peso corporal, acondicionamiento muscular y ejercicios pliomÃ©tricos.',
+            'description' => 'Entrenamiento de alta intensidad con música sincronizada que combina el peso corporal, acondicionamiento muscular y ejercicios pliométricos.',
             'color_code' => '#7928ca',
             'is_active' => true,
         ]);
@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
         $cardioDanceType = ClassType::create([
             'name' => 'Cardio Dance',
             'slug' => 'cardio-dance',
-            'description' => 'CoreografÃ­as divertidas diseÃ±adas para acelerar el metabolismo y quemar grasa bailando.',
+            'description' => 'Coreografías divertidas diseñadas para acelerar el metabolismo y quemar grasa bailando.',
             'color_code' => '#00dfd8',
             'is_active' => true,
         ]);
@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
         $fullBodyType = ClassType::create([
             'name' => 'Full Body Dance',
             'slug' => 'full-body-dance',
-            'description' => 'Entrenamiento integral de cuerpo completo al ritmo de la mejor mÃºsica.',
+            'description' => 'Entrenamiento integral de cuerpo completo al ritmo de la mejor música.',
             'color_code' => '#10b981',
             'is_active' => true,
         ]);
@@ -98,7 +98,7 @@ class DatabaseSeeder extends Seeder
             'day_of_week' => 'lunes',
             'start_time' => '19:00:00',
             'end_time' => '20:00:00',
-            'instructor_name' => 'Coach SofÃ­a',
+            'instructor_name' => 'Coach Sofía',
             'max_capacity' => 25,
             'is_active' => true,
         ]);
@@ -120,7 +120,7 @@ class DatabaseSeeder extends Seeder
             'day_of_week' => 'viernes',
             'start_time' => '19:00:00',
             'end_time' => '20:00:00',
-            'instructor_name' => 'Coach SofÃ­a',
+            'instructor_name' => 'Coach Sofía',
             'max_capacity' => 25,
             'is_active' => true,
         ]);
@@ -136,7 +136,7 @@ class DatabaseSeeder extends Seeder
             'is_active' => true,
         ]);
 
-        // 5. Planes de MembresÃ­a Iniciales
+        // 5. Planes de Membresía Iniciales
         MembershipPlan::create([
             'name' => '3 Veces por Semana',
             'price' => 120.00,
@@ -164,41 +164,41 @@ class DatabaseSeeder extends Seeder
             'is_active' => true,
         ]);
 
-        // 6. MÃ©todos de Pago
+        // 6. Métodos de Pago
         PaymentMethod::create([
             'name' => 'Yape',
             'slug' => 'yape',
             'account_number' => '999888777',
             'titular' => 'LAYRA FIT BAIL FITNESS',
             'is_active' => true,
-            'extra_info' => 'Adjunta tu captura con el nÃºmero de operaciÃ³n visible.',
+            'extra_info' => 'Adjunta tu captura con el número de operación visible.',
         ]);
 
         PaymentMethod::create([
-            'name' => 'Banco de la NaciÃ³n',
+            'name' => 'Banco de la Nación',
             'slug' => 'banco_nacion',
             'account_number' => '04-012-345678',
             'cci' => '018-012-004012345678-90',
             'titular' => 'LAYRA FIT E.I.R.L.',
             'is_active' => true,
-            'extra_info' => 'Transferencias interbancarias o depÃ³sitos en agente BN.',
+            'extra_info' => 'Transferencias interbancarias o depósitos en agente BN.',
         ]);
 
         PaymentMethod::create([
-            'name' => 'Banco de CrÃ©dito del PerÃº (BCP)',
+            'name' => 'Banco de Crédito del Perú (BCP)',
             'slug' => 'bcp',
             'account_number' => '193-98765432-0-11',
             'cci' => '002-193-0098765432011-14',
             'titular' => 'LAYRA FIT E.I.R.L.',
             'is_active' => true,
-            'extra_info' => 'Transferencias por Yape/Banca MÃ³vil BCP.',
+            'extra_info' => 'Transferencias por Yape/Banca Móvil BCP.',
         ]);
 
         // 7. Alumna de Prueba Inicial
         $studentUser = User::create([
             'phone' => '912345678',
-            'name' => 'MarÃ­a',
-            'last_name' => 'GonzÃ¡lez',
+            'name' => 'María',
+            'last_name' => 'González',
             'email' => 'maria@example.com',
             'password' => Hash::make('123456'),
             'role' => 'student',
@@ -214,8 +214,8 @@ class DatabaseSeeder extends Seeder
 
         // 8. Clases de Prueba
         DanceClass::create([
-            'name' => 'ZumbaÂ® & Bail Fitness',
-            'description' => 'Ritmos latinos y movimientos aerÃ³bicos para quemar grasa con la mejor energÃ­a.',
+            'name' => 'Zumba® & Bail Fitness',
+            'description' => 'Ritmos latinos y movimientos aeróbicos para quemar grasa con la mejor energía.',
             'duration_minutes' => 60,
             'level' => 'Inicial - Intermedio',
             'location_id' => $localCentro->id,
@@ -224,7 +224,7 @@ class DatabaseSeeder extends Seeder
 
         DanceClass::create([
             'name' => 'Strong Nation',
-            'description' => 'CoreografÃ­as de alta energÃ­a e intensidad muscular.',
+            'description' => 'Coreografías de alta energía e intensidad muscular.',
             'duration_minutes' => 60,
             'level' => 'Intermedio - Avanzado',
             'location_id' => $localCentro->id,
@@ -233,8 +233,8 @@ class DatabaseSeeder extends Seeder
 
         // 9. Novedad de Ejemplo
         News::create([
-            'title' => 'Â¡Nuevas clases de ZumbaÂ® y Strong Nation!',
-            'description' => 'Consulta el nuevo horario semanal de tu sede y reserva tus dÃ­as de entrenamiento.',
+            'title' => '¡Nuevas clases de Zumba® y Strong Nation!',
+            'description' => 'Consulta el nuevo horario semanal de tu sede y reserva tus días de entrenamiento.',
             'location_id' => null,
             'is_published' => true,
             'published_at' => now(),

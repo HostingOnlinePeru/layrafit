@@ -35,7 +35,7 @@ Route::get('/landing/style.css', function () {
     return response()->file(base_path('landing/style.css'), ['Content-Type' => 'text/css']);
 });
 Route::get('/landing/images/{file}', function ($file) {
-    $path = base_path('landing/images/' . $file);
+    $path = base_path('landing/images/'.$file);
     if (file_exists($path)) {
         return response()->file($path);
     }
@@ -91,7 +91,7 @@ Route::middleware(['auth', MustChangePassword::class, CheckRole::class.':admin']
     Route::resource('students', AdminStudentController::class);
     Route::post('students/{student}/toggle-status', [AdminStudentController::class, 'toggleStatus'])->name('students.toggle');
 
-    // Pagos & ValidaciÃƒÂ³n
+    // Pagos & Validación
     Route::get('pagos', [AdminPaymentValidationController::class, 'index'])->name('payments.index');
     Route::post('pagos/{payment}/aprobar', [AdminPaymentValidationController::class, 'approve'])->name('payments.approve');
     Route::post('pagos/{payment}/rechazar', [AdminPaymentValidationController::class, 'reject'])->name('payments.reject');
@@ -102,17 +102,17 @@ Route::middleware(['auth', MustChangePassword::class, CheckRole::class.':admin']
     Route::get('configuracion/metodos-pago', [AdminPaymentMethodController::class, 'index'])->name('settings.payment-methods');
     Route::put('configuracion/metodos-pago/{paymentMethod}', [AdminPaymentMethodController::class, 'update'])->name('settings.payment-methods.update');
 
-    // MembresÃƒÂ­as lista (redirige a alumnos)
+    // Membresías lista (redirige a alumnos)
     Route::get('membresias', [AdminStudentController::class, 'index'])->name('memberships.index');
 
     // Asistencias
     Route::get('asistencia', [AdminAttendanceController::class, 'index'])->name('attendance.index');
     Route::post('asistencia', [AdminAttendanceController::class, 'store'])->name('attendance.store');
 
-    // Disciplinas / Tipos de Clases (ZumbaÃ‚Â®, Strong Nation)
+    // Disciplinas / Tipos de Clases (Zumba®, Strong Nation)
     Route::resource('class-types', AdminClassTypeController::class)->except(['destroy', 'show']);
 
-    // ProgramaciÃƒÂ³n de Horarios Semanales
+    // Programación de Horarios Semanales
     Route::resource('class-schedules', AdminClassScheduleController::class)->only(['index', 'create', 'store', 'destroy']);
 
     // Rutinas y Clases de Baile

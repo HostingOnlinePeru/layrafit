@@ -74,14 +74,14 @@ class PaymentValidationController extends Controller
         $raffle->save();
 
         if ($plan->type === 'individual') {
-            // Plan S/ 10 Clase Individual: generar 1 crÃ©dito disponible
+            // Plan S/ 10 Clase Individual: generar 1 crédito disponible
             IndividualClassCredit::create([
                 'student_id' => $student->id,
                 'payment_id' => $payment->id,
                 'status' => 'available',
             ]);
         } else {
-            // Plan Mensual (S/ 120 o S/ 140): calcular 30 dÃ­as de vigencia
+            // Plan Mensual (S/ 120 o S/ 140): calcular 30 días de vigencia
             $startDate = now()->toDateString();
             $endDate = now()->addDays(30)->toDateString();
 
@@ -97,7 +97,7 @@ class PaymentValidationController extends Controller
             ]);
         }
 
-        return back()->with('success', "Pago NÂ° {$payment->operation_number} aprobado exitosamente. MembresÃ­a habilitada.");
+        return back()->with('success', "Pago N° {$payment->operation_number} aprobado exitosamente. Membresía habilitada.");
     }
 
     public function reject(Request $request, Payment $payment): RedirectResponse
@@ -115,6 +115,6 @@ class PaymentValidationController extends Controller
             'validated_at' => now(),
         ]);
 
-        return back()->with('success', "Pago NÂ° {$payment->operation_number} fue rechazado.");
+        return back()->with('success', "Pago N° {$payment->operation_number} fue rechazado.");
     }
 }

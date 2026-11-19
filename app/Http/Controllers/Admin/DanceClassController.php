@@ -41,7 +41,7 @@ class DanceClassController extends Controller
         DanceClass::create($validated);
 
         return redirect()->route('admin.dance-classes.index')
-            ->with('success', 'Rutina / Clase de Bail Fitness creada con Ã©xito.');
+            ->with('success', 'Rutina / Clase de Bail Fitness creada con éxito.');
     }
 
     public function edit(DanceClass $danceClass): View
