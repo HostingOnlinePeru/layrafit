@@ -168,10 +168,10 @@ class DatabaseSeeder extends Seeder
         PaymentMethod::create([
             'name' => 'Yape',
             'slug' => 'yape',
-            'account_number' => '999888777',
-            'titular' => 'LAYRA FIT BAIL FITNESS',
+            'account_number' => '982861401',
+            'titular' => 'Marely Piscoya Valdivieso',
             'is_active' => true,
-            'extra_info' => 'Adjunta tu captura con el número de operación visible.',
+            'extra_info' => 'Paga con Yape al 982 861 401 a nombre de Marely Piscoya Valdivieso. Adjunta tu captura con el número de operación visible.',
         ]);
 
         PaymentMethod::create([

@@ -109,17 +109,15 @@
         <div style="display: flex; flex-direction: column; gap: 12px; font-size: 12px;">
             @if(isset($currentTenant) && ($currentTenant->yape_number || $currentTenant->bank_accounts))
                 @if($currentTenant->yape_number)
-                    <div style="border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">
+                    <div style="border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px;">
                         <strong style="color: #fff; font-size: 13px;">Yape / Plin:</strong>
-                        <div>N° Celular: <strong style="color: var(--accent);">{{ $currentTenant->yape_number }}</strong></div>
+                        <div style="margin-top: 4px;">N° Celular: <strong style="color: var(--accent); font-size: 15px;">{{ $currentTenant->yape_number }}</strong></div>
                         @if($currentTenant->yape_holder)
-                            <div>Titular: {{ $currentTenant->yape_holder }}</div>
+                            <div>Titular: <strong style="color: #fff;">{{ $currentTenant->yape_holder }}</strong></div>
                         @endif
-                        @if($currentTenant->yape_qr)
-                            <div style="margin-top: 6px;">
-                                <img src="{{ asset('storage/' . $currentTenant->yape_qr) }}" alt="QR" style="max-height: 80px; border-radius: 6px;">
-                            </div>
-                        @endif
+                        <div style="margin-top: 10px;">
+                            <img src="{{ asset('images/yape-qr.png') }}" alt="QR Yape" style="max-height: 150px; width: auto; border-radius: 10px; background: #fff; padding: 4px;">
+                        </div>
                     </div>
                 @endif
                 @if($currentTenant->bank_accounts)
@@ -130,16 +128,21 @@
                 @endif
             @else
                 @foreach($paymentMethods as $pm)
-                    <div style="border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">
+                    <div style="border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px;">
                         <strong style="color: #fff; font-size: 13px;">{{ $pm->name }}:</strong>
                         @if($pm->account_number)
-                            <div>N° Cuenta/Celular: <strong style="color: var(--accent);">{{ $pm->account_number }}</strong></div>
+                            <div style="margin-top: 4px;">N° Cuenta/Celular: <strong style="color: var(--accent); font-size: 15px;">{{ $pm->account_number }}</strong></div>
                         @endif
                         @if($pm->cci)
                             <div>CCI: <code>{{ $pm->cci }}</code></div>
                         @endif
                         @if($pm->titular)
-                            <div>Titular: {{ $pm->titular }}</div>
+                            <div>Titular: <strong style="color: #fff;">{{ $pm->titular }}</strong></div>
+                        @endif
+                        @if($pm->slug === 'yape')
+                            <div style="margin-top: 10px;">
+                                <img src="{{ asset('images/yape-qr.png') }}" alt="QR Yape" style="max-height: 150px; width: auto; border-radius: 10px; background: #fff; padding: 4px;">
+                            </div>
                         @endif
                     </div>
                 @endforeach

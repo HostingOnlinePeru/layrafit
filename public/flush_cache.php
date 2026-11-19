@@ -131,6 +131,32 @@ try {
         );
     }
 
+    // Sincronizar datos de pago Yape y Tenant (Marely Piscoya)
+    $tenant = Tenant::first();
+    if ($tenant) {
+        $tenant->update([
+            'owner_name' => 'Marely Piscoya Valdivieso',
+            'owner_phone' => '982861401',
+            'phone' => '982861401',
+            'yape_number' => '982861401',
+            'yape_holder' => 'Marely Piscoya Valdivieso',
+            'yape_qr' => 'images/yape-qr.png',
+        ]);
+    }
+
+    PaymentMethod::updateOrCreate(
+        ['slug' => 'yape'],
+        [
+            'name' => 'Yape',
+            'account_number' => '982861401',
+            'titular' => 'Marely Piscoya Valdivieso',
+            'is_active' => true,
+            'extra_info' => 'Paga con Yape al 982 861 401 a nombre de Marely Piscoya Valdivieso. Adjunta tu captura con el número de operación visible.',
+        ]
+    );
+
+    $result['payment_method_yape'] = PaymentMethod::where('slug', 'yape')->first();
+    $result['tenant'] = Tenant::first(['id', 'name', 'owner_name', 'owner_phone', 'yape_number', 'yape_holder']);
     $result['students_sample'] = User::where('role', 'student')->get(['id', 'name', 'last_name', 'phone', 'email']);
     $result['news_sample'] = News::where('is_published', true)->latest()->get(['id', 'title', 'description', 'image']);
 } catch (Throwable $e) {

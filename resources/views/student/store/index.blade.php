@@ -65,9 +65,9 @@
             <div id="yape-product-price" style="font-size: 28px; font-weight: 900; color: var(--accent); margin-bottom: 24px;">S/ 0.00</div>
             
             <div style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 12px; margin-bottom: 20px;">
-                <img src="{{ asset('images/yape-qr.png') }}" alt="QR Yape" style="width: 150px; height: 150px; border-radius: 12px; margin-bottom: 12px; background: #fff; padding: 4px;" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg'">
-                <div style="font-size: 15px; font-weight: 700; color: #fff;">Layra Fit SRL</div>
-                <div style="font-size: 18px; font-weight: 900; color: var(--accent); margin-top: 4px;">999 888 777</div>
+                <img src="{{ asset('images/yape-qr.png') }}" alt="QR Yape" style="width: 170px; height: 170px; border-radius: 12px; margin-bottom: 12px; background: #fff; padding: 4px; object-fit: contain;">
+                <div style="font-size: 15px; font-weight: 700; color: #fff;">Marely Piscoya Valdivieso</div>
+                <div style="font-size: 18px; font-weight: 900; color: var(--accent); margin-top: 4px;">982 861 401</div>
             </div>
             
             <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">1. Escanea el QR o envía el pago al número.<br>2. Envía la captura al WhatsApp para coordinar la entrega en tu sede.</p>
@@ -84,8 +84,8 @@
         document.getElementById('yape-product-name').innerText = name;
         document.getElementById('yape-product-price').innerText = 'S/ ' + price.toFixed(2);
         
-        let text = encodeURIComponent('Hola LayraFit, acabo de pagar por Yape el monto de S/ ' + price.toFixed(2) + ' por el producto: ' + name + '. Adjunto captura.');
-        document.getElementById('yape-whatsapp-btn').href = 'https://wa.me/51999888777?text=' + text;
+        let text = encodeURIComponent('Hola Marely, acabo de pagar por Yape el monto de S/ ' + price.toFixed(2) + ' por el producto: ' + name + '. Adjunto captura de pago.');
+        document.getElementById('yape-whatsapp-btn').href = 'https://wa.me/51982861401?text=' + text;
         
         document.getElementById('yape-modal').style.display = 'flex';
     }
