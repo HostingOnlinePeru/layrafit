@@ -46,6 +46,10 @@ jobs:
               php artisan config:clear || true
               php artisan route:clear || true
 
+              # Limpiar OPcache y vistas de PHP-FPM via HTTP
+              curl -k -s "http://127.0.0.1/flush_cache.php?key=layra_deploy_2026" || true
+              curl -k -s "https://fitbeat.aulanova.org/flush_cache.php?key=layra_deploy_2026" || true
+
               # Escribir informe detallado en public/debug.txt
               {
                 echo "=== DEPLOY REPORT ==="
