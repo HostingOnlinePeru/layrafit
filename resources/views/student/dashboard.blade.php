@@ -60,26 +60,26 @@
     </div>
 
     @if($latestNews->isNotEmpty())
-        <div class="news-slider-container" id="newsSlider">
-            <div class="news-slider-wrapper" id="newsSliderWrapper">
+        <div class="news-slider-container" id="newsSlider" style="position: relative; width: 100%; max-width: 100%; overflow: hidden; border-radius: 18px; border: 1px solid var(--border-color); background: var(--bg-card); box-shadow: 0 10px 25px rgba(0,0,0,0.4); touch-action: pan-y;">
+            <div class="news-slider-wrapper" id="newsSliderWrapper" style="display: flex; width: 100%; transition: transform 0.4s ease-out; will-change: transform;">
                 @foreach($latestNews->filter(fn($n) => !empty($n->image))->values() as $index => $news)
-                    <div class="news-slide" data-index="{{ $index }}">
-                        <img src="{{ $news->image }}" alt="{{ $news->title }}" class="news-slide-img" loading="lazy">
+                    <div class="news-slide" data-index="{{ $index }}" style="flex: 0 0 100%; min-width: 100%; max-width: 100%; width: 100%; position: relative; overflow: hidden; border-radius: 18px; aspect-ratio: 16 / 9; box-sizing: border-box;">
+                        <img src="{{ $news->image }}" alt="{{ $news->title }}" class="news-slide-img" loading="eager" style="width: 100%; height: 100%; max-width: 100%; object-fit: cover; display: block; border-radius: 18px;">
                     </div>
                 @endforeach
             </div>
 
             <!-- Flechas de navegación -->
             @if($latestNews->filter(fn($n) => !empty($n->image))->count() > 1)
-                <button type="button" class="news-slider-arrow news-slider-prev" id="newsPrevBtn" aria-label="Anterior">
-                    <i class="fa-solid fa-chevron-left"></i>
+                <button type="button" class="news-slider-arrow news-slider-prev" id="newsPrevBtn" aria-label="Anterior" style="position: absolute; top: 50%; transform: translateY(-50%); left: 8px; width: 30px; height: 30px; border-radius: 50%; background: rgba(15,18,28,0.75); border: 1px solid rgba(255,255,255,0.25); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10;">
+                    <i class="fa-solid fa-chevron-left" style="font-size: 11px;"></i>
                 </button>
-                <button type="button" class="news-slider-arrow news-slider-next" id="newsNextBtn" aria-label="Siguiente">
-                    <i class="fa-solid fa-chevron-right"></i>
+                <button type="button" class="news-slider-arrow news-slider-next" id="newsNextBtn" aria-label="Siguiente" style="position: absolute; top: 50%; transform: translateY(-50%); right: 8px; width: 30px; height: 30px; border-radius: 50%; background: rgba(15,18,28,0.75); border: 1px solid rgba(255,255,255,0.25); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10;">
+                    <i class="fa-solid fa-chevron-right" style="font-size: 11px;"></i>
                 </button>
 
                 <!-- Indicadores Dots -->
-                <div class="news-slider-dots" id="newsSliderDots">
+                <div class="news-slider-dots" id="newsSliderDots" style="position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 10; padding: 4px 10px; border-radius: 20px; background: rgba(0,0,0,0.55); backdrop-filter: blur(6px);">
                     @foreach($latestNews->filter(fn($n) => !empty($n->image))->values() as $index => $news)
                         <button type="button" class="news-slider-dot {{ $index === 0 ? 'active' : '' }}" data-slide="{{ $index }}" aria-label="Slide {{ $index + 1 }}"></button>
                     @endforeach

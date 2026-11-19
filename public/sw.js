@@ -1,4 +1,4 @@
-const CACHE_NAME = 'layrafit-pwa-v2';
+const CACHE_NAME = 'layrafit-pwa-v3';
 const ASSETS = [
     '/',
     '/css/app.css',

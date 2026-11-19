@@ -68,15 +68,14 @@ a {color: inherit; text-decoration: none;}
 .video-bg-iframe {position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh; transform: translate(-50%, -50%) scale(1.4); pointer-events: none; opacity: 0.7; filter: brightness(0.85) contrast(1.15) saturate(1.2);}
 .video-bg-overlay {position: fixed; inset: 0; z-index: 2; background: radial-gradient(circle at center, rgba(22, 11, 10, 0.25) 0%, rgba(22, 11, 10, 0.85) 100%); pointer-events: none;}
 .pricing-card:hover {transform: translateY(-4px); border-color: var(--primary) !important; box-shadow: 0 12px 30px rgba(81, 32, 29, 0.5) !important;}
-.news-slider-container {position: relative; width: 100%; overflow: hidden; border-radius: 20px; border: 1px solid var(--border-color); background: var(--bg-card); box-shadow: 0 10px 28px rgba(0,0,0,0.35); user-select: none; touch-action: pan-y;}
-.news-slider-wrapper {display: flex; width: 100%; transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);}
-.news-slide {min-width: 100%; width: 100%; position: relative; aspect-ratio: 16 / 9; max-height: 260px; box-sizing: border-box; overflow: hidden; display: flex; align-items: center; justify-content: center;}
-.news-slide-img {width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease;}
-.news-slide:hover .news-slide-img {transform: scale(1.02);}
-.news-slider-arrow {position: absolute; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border-radius: 50%; background: rgba(15,18,28,0.7); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; transition: all 0.2s; font-size: 11px;}
+.news-slider-container {position: relative; width: 100%; max-width: 100%; overflow: hidden; border-radius: 18px; border: 1px solid var(--border-color); background: var(--bg-card); box-shadow: 0 10px 25px rgba(0,0,0,0.4); user-select: none; touch-action: pan-y;}
+.news-slider-wrapper {display: flex; width: 100%; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); will-change: transform;}
+.news-slide {flex: 0 0 100%; min-width: 100%; max-width: 100%; width: 100%; position: relative; aspect-ratio: 16 / 9; box-sizing: border-box; overflow: hidden; display: flex; align-items: center; justify-content: center; border-radius: 18px;}
+.news-slide-img {width: 100%; height: 100%; max-width: 100%; object-fit: cover; display: block; border-radius: 18px; pointer-events: none;}
+.news-slider-arrow {position: absolute; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; border-radius: 50%; background: rgba(15,18,28,0.75); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; transition: all 0.2s; font-size: 11px;}
 .news-slider-arrow:hover {background: var(--primary); border-color: var(--primary); transform: translateY(-50%) scale(1.1);}
-.news-slider-prev {left: 10px;}
-.news-slider-next {right: 10px;}
-.news-slider-dots {position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 7px; z-index: 10; padding: 4px 10px; border-radius: 20px; background: rgba(0,0,0,0.4); backdrop-filter: blur(6px);}
-.news-slider-dot {width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.45); border: none; cursor: pointer; transition: all 0.3s; padding: 0;}
-.news-slider-dot.active {width: 22px; border-radius: 4px; background: var(--primary);}
+.news-slider-prev {left: 8px;}
+.news-slider-next {right: 8px;}
+.news-slider-dots {position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 10; padding: 4px 10px; border-radius: 20px; background: rgba(0,0,0,0.55); backdrop-filter: blur(6px);}
+.news-slider-dot {width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.4); border: none; cursor: pointer; transition: all 0.25s; padding: 0;}
+.news-slider-dot.active {width: 20px; border-radius: 4px; background: var(--primary);}
