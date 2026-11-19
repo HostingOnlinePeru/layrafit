@@ -62,51 +62,15 @@
     @if($latestNews->isNotEmpty())
         <div class="news-slider-container" id="newsSlider">
             <div class="news-slider-wrapper" id="newsSliderWrapper">
-                @foreach($latestNews as $index => $news)
+                @foreach($latestNews->filter(fn($n) => !empty($n->image))->values() as $index => $news)
                     <div class="news-slide" data-index="{{ $index }}">
-                        @if($news->image)
-                            <img src="{{ $news->image }}" alt="{{ $news->title }}" class="news-slide-bg" loading="lazy">
-                        @else
-                            <div class="news-slide-bg" style="background: radial-gradient(circle at center, #2e100e 0%, #160b0a 100%);"></div>
-                        @endif
-                        <div class="news-slide-overlay"></div>
-                        <div class="news-slide-content">
-                            @php
-                                $tagClass = 'tag-promo';
-                                $tagIcon = 'fa-tag';
-                                $tagText = 'Aviso';
-                                $titleLower = mb_strtolower($news->title);
-                                if (str_contains($titleLower, 'sorteo')) {
-                                    $tagClass = 'tag-sorteo';
-                                    $tagIcon = 'fa-gift';
-                                    $tagText = 'Sorteo 23 Dic';
-                                } elseif (str_contains($titleLower, 'cena')) {
-                                    $tagClass = 'tag-cena';
-                                    $tagIcon = 'fa-champagne-glasses';
-                                    $tagText = 'Evento 23 Dic';
-                                } elseif (str_contains($titleLower, 'polo') || str_contains($titleLower, 'descuento') || str_contains($titleLower, 'dcto')) {
-                                    $tagClass = 'tag-promo';
-                                    $tagIcon = 'fa-percent';
-                                    $tagText = '15% Descuento';
-                                }
-                            @endphp
-                            <div style="display: flex; align-items: center; justify-content: space-between;">
-                                <span class="news-slide-tag {{ $tagClass }}">
-                                    <i class="fa-solid {{ $tagIcon }}"></i> {{ $tagText }}
-                                </span>
-                                <span style="font-size: 11px; color: rgba(255,255,255,0.7); font-weight: 600;">
-                                    {{ $news->published_at ? $news->published_at->format('d/m/Y') : '' }}
-                                </span>
-                            </div>
-                            <h4 class="news-slide-title">{{ $news->title }}</h4>
-                            <p class="news-slide-desc">{{ $news->description }}</p>
-                        </div>
+                        <img src="{{ $news->image }}" alt="{{ $news->title }}" class="news-slide-img" loading="lazy">
                     </div>
                 @endforeach
             </div>
 
             <!-- Flechas de navegación -->
-            @if($latestNews->count() > 1)
+            @if($latestNews->filter(fn($n) => !empty($n->image))->count() > 1)
                 <button type="button" class="news-slider-arrow news-slider-prev" id="newsPrevBtn" aria-label="Anterior">
                     <i class="fa-solid fa-chevron-left"></i>
                 </button>
@@ -116,7 +80,7 @@
 
                 <!-- Indicadores Dots -->
                 <div class="news-slider-dots" id="newsSliderDots">
-                    @foreach($latestNews as $index => $news)
+                    @foreach($latestNews->filter(fn($n) => !empty($n->image))->values() as $index => $news)
                         <button type="button" class="news-slider-dot {{ $index === 0 ? 'active' : '' }}" data-slide="{{ $index }}" aria-label="Slide {{ $index + 1 }}"></button>
                     @endforeach
                 </div>
