@@ -39,14 +39,23 @@
                 </div>
             </div>
 
-            <div style="display: flex; gap: 10px; border-top: 1px solid var(--border-color); padding-top: 16px;">
-                <a href="{{ route('admin.locations.edit', $location) }}" class="btn btn-secondary btn-sm" style="flex: 1;">
-                    ✏️ Editar
-                </a>
-                <form action="{{ route('admin.locations.toggle', $location) }}" method="POST" style="flex: 1;">
+            <div style="border-top: 1px solid var(--border-color); padding-top: 14px; display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex; gap: 8px;">
+                    <a href="{{ route('admin.locations.edit', $location) }}" class="btn btn-secondary btn-sm" style="flex: 1; gap: 6px;">
+                        <i class="fa-solid fa-pen-to-square"></i> Editar
+                    </a>
+                    <form action="{{ route('admin.locations.toggle', $location) }}" method="POST" style="flex: 1;">
+                        @csrf
+                        <button type="submit" class="btn {{ $location->is_active ? 'btn-secondary' : 'btn-success' }} btn-sm" style="width: 100%; gap: 6px; {{ $location->is_active ? 'color: var(--warning);' : '' }}">
+                            <i class="fa-solid {{ $location->is_active ? 'fa-ban' : 'fa-check' }}"></i> {{ $location->is_active ? 'Desactivar' : 'Activar' }}
+                        </button>
+                    </form>
+                </div>
+                <form action="{{ route('admin.locations.destroy', $location) }}" method="POST" onsubmit="return confirm('¿Está seguro de eliminar esta sede?');" style="width: 100%;">
                     @csrf
-                    <button type="submit" class="btn {{ $location->is_active ? 'btn-danger' : 'btn-success' }} btn-sm" style="width: 100%;">
-                        {{ $location->is_active ? 'Desactivar' : 'Activar' }}
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm" style="width: 100%; gap: 6px;">
+                        <i class="fa-solid fa-trash-can"></i> Eliminar Sede
                     </button>
                 </form>
             </div>

@@ -84,7 +84,7 @@ Route::middleware(['auth', MustChangePassword::class, CheckRole::class.':admin']
     Route::get('/dashboard', AdminDashboardController::class)->name('dashboard');
 
     // Locales / Sedes
-    Route::resource('locations', AdminLocationController::class)->except(['destroy', 'show']);
+    Route::resource('locations', AdminLocationController::class)->except(['show']);
     Route::post('locations/{location}/toggle', [AdminLocationController::class, 'toggle'])->name('locations.toggle');
 
     // Alumnos

@@ -55,5 +55,19 @@
             <a href="{{ route('admin.locations.index') }}" class="btn btn-secondary">Cancelar</a>
         </div>
     </form>
+
+    <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <div>
+            <div style="font-size: 13px; font-weight: 700; color: var(--danger);">Zona de Peligro</div>
+            <div style="font-size: 12px; color: var(--text-muted);">Eliminar esta sede permanentemente</div>
+        </div>
+        <form action="{{ route('admin.locations.destroy', $location) }}" method="POST" onsubmit="return confirm('¿Está seguro de eliminar esta sede?');">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger btn-sm" style="gap: 6px;">
+                <i class="fa-solid fa-trash-can"></i> Eliminar Sede
+            </button>
+        </form>
+    </div>
 </div>
 @endsection

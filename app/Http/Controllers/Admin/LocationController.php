@@ -74,4 +74,13 @@ class LocationController extends Controller
 
         return back()->with('success', "El local '{$location->name}' fue {$status}.");
     }
+
+    public function destroy(Location $location): RedirectResponse
+    {
+        $name = $location->name;
+        $location->delete();
+
+        return redirect()->route('admin.locations.index')
+            ->with('success', "La sede '{$name}' ha sido eliminada correctamente.");
+    }
 }
