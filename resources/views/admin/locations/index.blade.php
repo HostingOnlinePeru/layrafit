@@ -14,11 +14,10 @@
     @forelse($locations as $location)
         <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 24px; position: relative; display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                <div style="margin-bottom: 12px;">
                     <span class="badge {{ $location->is_active ? 'badge-active' : 'badge-suspended' }}">
                         {{ $location->is_active ? 'Activo' : 'Inactivo' }}
                     </span>
-                    <div style="font-size: 12px; color: var(--text-muted);">ID: #{{ $location->id }}</div>
                 </div>
 
                 <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 6px; color: #fff;">{{ $location->name }}</h3>
