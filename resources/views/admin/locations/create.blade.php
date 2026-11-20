@@ -4,7 +4,7 @@
 
 @section('content')
 <div style="max-width: 600px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 28px; backdrop-filter: blur(16px);">
-    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 20px;">Registrar Nuevo Local de Bail Fitness</h3>
+    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 20px;">Registrar Nueva Sede</h3>
 
     @if($errors->any())
         <div class="alert alert-danger">

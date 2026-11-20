@@ -1,15 +1,12 @@
 @extends('layouts.admin')
 
-@section('page_title', 'Gestión de Sedes y Locales Multi-Local')
+@section('page_title', 'Sedes')
 
 @section('content')
-<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
-    <div>
-        <h3 style="font-size: 20px; font-weight: 700;">Red de Locales de Bail Fitness</h3>
-        <p style="font-size: 13px; color: var(--text-muted);">Administra todas las sedes activas e inactivas de tu negocio.</p>
-    </div>
-    <a href="{{ route('admin.locations.create') }}" class="btn btn-primary">
-        <span>➕</span> Nueva Sede
+<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+    <h3 style="font-size: 18px; font-weight: 700; margin: 0;">Sedes</h3>
+    <a href="{{ route('admin.locations.create') }}" class="btn btn-primary" style="gap: 6px;">
+        <i class="fa-solid fa-plus"></i> Nueva Sede
     </a>
 </div>
 

@@ -6,7 +6,7 @@
 <!-- Saludo Personalizado -->
 <div style="margin-bottom: 20px;">
     <h2 style="font-size: 24px; font-weight: 800;">Hola, {{ $user->name }} 👋</h2>
-    <p style="font-size: 13px; color: var(--text-muted);">¡Bienvenida a tu panel de Bail Fitness!</p>
+    <p style="font-size: 13px; color: var(--text-muted);">¡Bienvenida a tu panel de {{ $currentTenant->name ?? 'Layra Fit' }}!</p>
 </div>
 
 <!-- Banner de Membresía Actual / Botón Empezar Mis Rutinas -->
